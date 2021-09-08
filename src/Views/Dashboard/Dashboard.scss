@@ -1,0 +1,127 @@
+.dashboard {
+    background: #F6F6F6;
+    font-family: Raleway;
+    width: 100vw;
+    height: 100vh;
+}
+
+.notflix{
+    font-size: 30px;
+    text-decoration: underline;
+    text-decoration-color: #C78C36;
+    text-decoration-thickness: 3px;
+}
+
+.titulo {
+    display: flex;
+    align-items: flex-end;
+    font-size: 30px;
+    margin-top:20px;
+    margin-left: 40px;
+}
+
+.containerDashboard{
+    background: #ffffff;
+    height: auto;
+    border-radius: 10px;
+    margin: 50px;
+}
+
+.containerDentro{
+    background: #F6F6F6;
+    border-radius: 10px;
+    margin-top: 50px !important;
+    margin-bottom: 50px;
+    height: auto;
+    width: 75% !important;
+}
+
+.boton{
+    position: relative;
+    background-color: #C78C36;
+    border-color: #C78C36;
+    border-radius: 5px;
+    color: white;
+    border: 1px;
+    padding: 1rem;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    overflow: hidden;
+    margin: 10px;
+    margin-bottom: 20px;
+    height: auto;
+    width: 200px;
+}
+
+.boton:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+
+  .boton:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+
+  .containerPago {
+    background: #ffffff;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .suscripciones{
+    background-color: #C78C36;
+    border-radius: 10px;
+    height: 70px;
+    width: 400px;
+  }
+
+  .botonSuscripciones{
+    position: fixed;
+    background-color: #000000;
+    border-color: #000000;
+    border-radius: 5px;
+    color: white;
+    border: 1px;
+    padding: 1rem;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    overflow: hidden;
+    height: auto;
+    width: 350px;
+   
+}
+
+.botonSuscripciones:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+
+  .botonSuscripciones:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
