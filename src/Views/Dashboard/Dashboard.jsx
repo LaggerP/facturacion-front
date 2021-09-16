@@ -26,49 +26,49 @@ function Dashboard() {
                 </Container>
             </Navbar>
         <Container>
-        <p className="titulo" style={{paddingTop:40}}>¡Hola,&nbsp;<span style={{color: "#C78C36"}}> Username</span>! Es bueno tenerte de nuevo</p>
+        <p className="titulo" style={{paddingTop:40}}>¡Hola, Username! Es bueno tenerte de nuevo</p>
         </Container>
         <div>
             <Container className="containerDashboard">
                 <Row>
-                    <Col xs={6}>
+                    <Col xs={true}>
                         <Row>
                             <Container className="containerDentro">
-                                <p className="titulo" style={{fontSize:"25px", marginLeft:0}}>Última factura:</p>
+                                <p className="titulo" style={{fontSize:"25px"}}>Última factura:</p>
                                 <Button type="primary" bsPrefix="boton"><Download style={{marginRight:"10px"}}/>Descargar</Button>
                                 <Button type="primary" bsPrefix="boton">+ Ver Facturas</Button>
                             </Container>
                         </Row>
                         <Row>
                             <Container className="containerDentro">
-                                <p className="titulo" style={{fontSize:"25px", marginLeft:0}}>Método de pago:</p>
+                                <p className="titulo" style={{fontSize:"25px"}}>Método de pago:</p>
                                 <Container className="containerPago">
                                     <img
                                         alt="tarjeta"
                                         src={"https://logos-world.net/wp-content/uploads/2020/09/Mastercard-Symbol.jpg"}
                                         width="100"
                                         height="50"
-                                        style={{borderRadius:5, margin:10, float:"left"}}
+                                        style={{borderRadius:5, marginTop:10, marginRight:10, float:"left"}}
                                     />
-                                    <p className="titulo" style={{fontSize:"20px", marginLeft:0, paddingTop:20}}>**** **** **** 1234 <Pencil style={{marginLeft:"10px"}}/></p>
-                                    <p className="titulo" style={{fontSize:"20px", marginLeft:10}}><span style={{fontWeight:"bold"}}>Nombre y Apellido</span>: Username</p>
-                                    <p className="titulo" style={{fontSize:"20px", marginLeft:10}}><span style={{fontWeight:"bold"}}>Vencimiento</span>: xx/yy</p>
+                                    <p className="titulo" style={{fontSize:"20px", paddingTop:20}}>**** **** **** 1234 <Pencil style={{fontSize:25}}/></p>
+                                    <p className="titulo" style={{fontSize:"20px"}}>Nombre y Apellido: Username</p>
+                                    <p className="titulo" style={{fontSize:"20px"}}> Vencimiento: xx/yy</p>
                                 </Container>
                             </Container>
                         </Row>
                     </Col>
-                    <Col xs={6}>
+                    <Col xs={true}>
                         <Container className="containerDentro" style={{height:510.5}}>
-                            <p className="titulo" style={{fontSize:"25px", marginLeft:0, paddingTop:20}}>Suscripciones contratadas:</p>
+                            <p className="titulo" style={{fontSize:"25px", paddingTop:20}}>Suscripciones contratadas:</p>
                             <Container className="suscripciones">
                                 <img
                                     alt="futbol"
                                     src={"https://static10.tgstat.ru/channels/_0/33/332ade91fec68a741f4a31f930849649.jpg"}
                                     width="50"
                                     height="50"
-                                    style={{borderRadius:5, margin:10, float:"left"}}
+                                    style={{borderRadius:5,  marginRight:10, float:"left"}}
                                 />
-                                <p className="titulo" style={{fontSize:"20px", marginLeft:0, paddingTop:15}}>Pack Fútbol</p>
+                                <p className="titulo" style={{fontSize:"20px"}}>Pack Fútbol</p>
                             </Container>
                             <Container className="suscripciones">
                                 <img
@@ -76,13 +76,11 @@ function Dashboard() {
                                     src={"https://pbs.twimg.com/profile_images/840296895763357698/DbjCavzG_400x400.jpg"}
                                     width="50"
                                     height="50"
-                                    style={{borderRadius:5, margin:10, float:"left"}}
+                                    style={{borderRadius:5,  marginRight:10, float:"left"}}
                                 />
-                                <p className="titulo" style={{fontSize:"20px", marginLeft:0, paddingTop:15}}>Pack National Geographic</p>
+                                <p className="titulo" style={{fontSize:"20px"}}>Pack National Geographic</p>
                             </Container>
-                            <Container style={{display:"flex", justifyContent:'flex-end', marginTop:190}}>
-                                <Button type="primary" bsPrefix="botonSuscripciones">Ver mis suscripciones</Button>
-                            </Container>
+                            <Button type="primary" bsPrefix="botonSuscripciones">Ver mis suscripciones</Button>
                         </Container>
                     </Col>
                 </Row>

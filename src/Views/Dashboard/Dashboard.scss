@@ -17,7 +17,7 @@
     align-items: flex-end;
     font-size: 30px;
     margin-top:20px;
-    margin-left: 40px;
+    text-align: left;
 }
 
 .containerDashboard{
@@ -28,6 +28,7 @@
 }
 
 .containerDentro{
+  position: relative;
     background: #F6F6F6;
     border-radius: 10px;
     margin-top: 50px !important;
@@ -82,14 +83,17 @@
   }
 
   .suscripciones{
+    display: flex;
+    align-items: center;
     background-color: #C78C36;
     border-radius: 10px;
-    height: 70px;
-    width: 400px;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .botonSuscripciones{
-    position: fixed;
+    position: absolute;
     background-color: #000000;
     border-color: #000000;
     border-radius: 5px;
@@ -102,8 +106,10 @@
     transition-duration: 0.4s;
     overflow: hidden;
     height: auto;
-    width: 350px;
-   
+    width: 75%;
+    bottom: 0;
+    left: 12.5%;
+    margin-bottom: 10px;
 }
 
 .botonSuscripciones:after {
