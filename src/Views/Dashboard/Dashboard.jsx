@@ -31,7 +31,7 @@ function Dashboard() {
         <div>
             <Container className="containerDashboard">
                 <Row>
-                    <Col xs={true}>
+                    <Col sm={8} md={8} lg={6}>
                         <Row>
                             <Container className="containerDentro">
                                 <p className="titulo" style={{fontSize:"25px"}}>Última factura:</p>
@@ -57,7 +57,7 @@ function Dashboard() {
                             </Container>
                         </Row>
                     </Col>
-                    <Col xs={true}>
+                    <Col sm={8} md={8} lg={6}>
                         <Container className="containerDentro" style={{height:510.5}}>
                             <p className="titulo" style={{fontSize:"25px", paddingTop:20}}>Suscripciones contratadas:</p>
                             <Container className="suscripciones">
