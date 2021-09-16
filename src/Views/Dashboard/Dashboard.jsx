@@ -28,7 +28,7 @@ function Dashboard() {
         <Container>
         <p className="titulo" style={{paddingTop:40}}>¡Hola, Username! Es bueno tenerte de nuevo</p>
         </Container>
-        <div>
+        <div style={{display:'flex', justifyContent:'center'}}>
             <Container className="containerDashboard">
                 <Row>
                     <Col sm={8} md={8} lg={6}>
