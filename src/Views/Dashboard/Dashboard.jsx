@@ -2,29 +2,13 @@ import React from "react";
 
 import './Dashboard.scss';
 
-import { Navbar, Container, Col, Row, Button } from "react-bootstrap";
+import {Container, Col, Row, Button} from "react-bootstrap";
 
 import {Download, Pencil} from "react-bootstrap-icons"
 
 function Dashboard() {
   return (
     <div className="dashboard">
-            <Navbar bg="dark" variant="dark">
-                <Container>
-                    <Navbar.Brand href="/">
-                        <p className="notflix">NotFlix</p>
-                    </Navbar.Brand>
-                    <Navbar.Toggle/>
-                    <Navbar.Collapse className="justify-content-end">
-                        <img
-                            alt="Perfil"
-                            src={"https://mir-s3-cdn-cf.behance.net/project_modules/disp/366be133850498.56ba69ac36858.png"}
-                            width="50"
-                            height="50"
-                        />
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
         <Container>
         <p className="titulo" style={{paddingTop:40}}>¡Hola, Username! Es bueno tenerte de nuevo</p>
         </Container>
