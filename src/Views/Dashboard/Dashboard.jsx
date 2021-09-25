@@ -10,7 +10,7 @@ function Dashboard() {
   return (
     <div className="dashboard">
         <Container>
-        <p className="titulo" style={{paddingTop:40}}>¡Hola, Username! Es bueno tenerte de nuevo</p>
+        <p className="welcomeTitle" style={{paddingTop:40}}>¡Hola, Username! Es bueno tenerte de nuevo</p>
         </Container>
         <div style={{display:'flex', justifyContent:'center'}}>
             <Container className="containerDashboard">
