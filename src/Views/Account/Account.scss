@@ -1,0 +1,43 @@
+.account {
+    background: #F6F6F6;
+    font-family: Raleway;
+    width: 100vw;
+    height: 100vh;
+}
+
+.informationContainer {
+    background: #ffffff;
+    height: auto;
+    border-radius: 10px;
+    margin: 30px;  
+}
+
+.accountTitle {
+    font-family: Raleway;
+    font-size: 30px;
+}
+
+.title {
+    display: flex;
+    font-size: 25px;
+    margin-top:20px;
+    text-align: left;
+}
+
+.membershipTitle {
+    font-size: 15px;
+    text-align: justify;
+}
+
+.containerTitles {
+    display: flex;
+    justify-content: space-between;
+    padding-top:40px;
+}
+
+.personalDataTitle {
+    font-size: 25px ;
+    text-align: left;
+    margin-bottom: 5px;
+    margin-top: 30px;
+}
