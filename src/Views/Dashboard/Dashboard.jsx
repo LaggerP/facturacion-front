@@ -38,7 +38,7 @@ function Dashboard() {
                             <Col lg={{span:10, offset:1}}>
                             <Container className="containerPayment">
                                 <Row >
-                                    <Col xs={4} lg={3}>
+                                    <Col xs={6} lg={4}>
                                         <img
                                             alt="tarjeta"
                                             src={"https://logos-world.net/wp-content/uploads/2020/09/Mastercard-Symbol.jpg"}
@@ -47,7 +47,7 @@ function Dashboard() {
                                             style={{borderRadius:5, marginTop:10, display:'flex', justifyContent:'flex-start'}}
                                         />
                                     </Col>
-                                    <Col xs={8} lg={9}>
+                                    <Col xs={6} lg={8}>
                                         <p className="subtext" style={{marginTop:20}}>**** **** **** 1234 <Pencil style={{fontSize:25}}/></p>
                                     </Col>
                                 </Row>
