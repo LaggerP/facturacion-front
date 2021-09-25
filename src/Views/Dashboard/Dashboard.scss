@@ -1,49 +1,51 @@
-.dashboard {
-    background: #F6F6F6;
-    font-family: Raleway;
+html, body {
+  background-color: #F6F6F6;
 }
 
-.welcomeTitle {
-  display: flex;
-  align-items: flex-end;
-  font-size: 30px;
-  text-align: left;
+.dashboard {
+    background: #F6F6F6;
+    font-family: Raleway, sans-serif;
 }
 
 .notflix{
-    font-size: 30px;
-    text-decoration: underline;
-    text-decoration-color: #C78C36;
-    text-decoration-thickness: 3px;
+  font-size: 30px;
+  text-decoration: underline;
+  text-decoration-color: #C78C36;
+  text-decoration-thickness: 3px;
 }
 
-.titulo {
-    display: flex;
-    align-items: flex-end;
-    font-size: 30px;
-    margin-top:20px;
-    text-align: left;
+.welcomeTitle {
+  font-size: 30px;
+  text-align: left;
+  padding-top: 50px;
+}
+
+.text{
+  font-size: 25px;
+  text-align: left;
+}
+
+.subtext{
+  font-size: 20px;
+  text-align: left;
+  align-items: center;
 }
 
 .containerDashboard{
-    background: #ffffff;
-    height: auto;
-    border-radius: 10px;
-    margin: 50px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding-top:50px;
+  padding-left:50px;
+  padding-right:50px;
 }
 
-.containerDentro{
-  position: relative;
-    background: #F6F6F6;
-    border-radius: 10px;
-    margin-top: 50px !important;
-    margin-bottom: 50px;
-    height: auto;
-    width: 75% !important;
+.containerInside{
+  background: #F6F6F6;
+  border-radius: 10px;
+  padding: 25px;
 }
 
-.boton{
-    position: relative;
+.button{
     background-color: #C78C36;
     border-color: #C78C36;
     border-radius: 5px;
@@ -53,52 +55,25 @@
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    transition-duration: 0.4s;
-    overflow: hidden;
-    margin: 10px;
-    margin-bottom: 20px;
-    height: auto;
     width: 200px;
+    margin: 10px;
 }
 
-.boton:after {
-    content: "";
-    background: #f1f1f1;
-    display: block;
-    position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px !important;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 0.8s
-  }
-
-  .boton:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-  }
-
-  .containerPago {
+  .containerPayment {
     background: #ffffff;
-    height: auto;
     border-radius: 10px;
   }
 
-  .suscripciones{
-    display: flex;
-    align-items: center;
+  .subscriptions{
     background-color: #C78C36;
-    border-radius: 10px;
-    height: auto;
+    border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+    align-items: center;
+    padding: 10px;
   }
 
-  .botonSuscripciones{
-    position: absolute;
+  .buttonSubscriptions{
     background-color: #000000;
     border-color: #000000;
     border-radius: 5px;
@@ -108,31 +83,4 @@
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    transition-duration: 0.4s;
-    overflow: hidden;
-    height: auto;
-    width: 75%;
-    bottom: 0;
-    left: 12.5%;
-    margin-bottom: 10px;
 }
-
-.botonSuscripciones:after {
-    content: "";
-    background: #f1f1f1;
-    display: block;
-    position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px !important;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 0.8s
-  }
-
-  .botonSuscripciones:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-  }
