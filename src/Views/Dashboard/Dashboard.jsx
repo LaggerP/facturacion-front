@@ -3,6 +3,7 @@ import React from "react";
 import './Dashboard.scss';
 
 import {Container, Col, Row, Button} from "react-bootstrap";
+import {LinkContainer} from 'react-router-bootstrap';
 
 import {Download, Pencil} from "react-bootstrap-icons"
 
@@ -107,7 +108,9 @@ function Dashboard() {
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Button type="primary" bsPrefix="buttonSubscriptions">Ver mis suscripciones</Button>
+                                    <LinkContainer to="/subscriptions">
+                                        <Button type="primary" bsPrefix="buttonSubscriptions">Ver mis suscripciones</Button>
+                                    </LinkContainer>
                                 </Row>
                             </Col>
                         </Container>

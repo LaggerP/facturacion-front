@@ -4,6 +4,7 @@ import {Route, Switch, BrowserRouter} from 'react-router-dom';
 import Dashboard from './Views/Dashboard/Dashboard';
 import NotFound from './Views/NotFound/NotFound';
 import Navbar from '././Components/Navbar';
+import Subscriptions from './Views/Subscriptions/Subscriptions';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Dashboard} />
+            <Route path="/subscriptions" component={Subscriptions} />
             <Route path="*" component={NotFound}/>
           </Switch>
         </BrowserRouter>
