@@ -7,12 +7,12 @@ function Subscriptions() {
         <div className="subscriptions">
             <Container className="containerSubscriptions">
                 <Row>
-                    <Col sm={12} md={6} lg={6}>
+                    <Col sm={12} md={8} xl={10}>
                         <p className="subscriptionsTitle">Suscripciones</p>
                     </Col>
-                    <Col sm={12} md={6} lg={6} style={{display: "flex", justifyContent:"flex-end"}}>
+                    <Col sm={12} md={4} xl={2}>
                         <Button type="primary" bsPrefix="button">+ Paquetes</Button>
-                        {/* <p className="clickText">Haga click aqui para contratar más paquetes</p> */}
+                        <p className="clickText">Haga click aqui para contratar más paquetes</p>
                     </Col>
                 </Row>
                 <Row>

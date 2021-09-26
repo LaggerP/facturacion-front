@@ -4,6 +4,7 @@ import './Dashboard.scss';
 
 import {Container, Col, Row, Button} from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap';
+import {Link} from 'react-router-dom';
 
 import {Download, Pencil} from "react-bootstrap-icons"
 
@@ -15,18 +16,18 @@ function Dashboard() {
         </Container>
         <Container className="containerDashboard">
             <Row>
-                <Col sm={12} md={6} lg={{span:5, offset:1}}>
+                <Col sm={12} md={6} xl={{span:5, offset:1}}>
                     <Row>
                         <Container className="containerInside">
                         <Row>
                             <p className="text">Última factura:</p>
                         </Row>
                         <Row>
-                        <Col lg={{span:5, offset:1}}>
-                            <Button type="primary" bsPrefix="button"><Download style={{marginRight:"10px"}}/>Descargar</Button>
+                        <Col xl={{span:5, offset:1}}>
+                            <Button type="primary" bsPrefix="buttonInvoice"><Download style={{marginRight:"10px"}}/>Descargar</Button>
                         </Col>
-                        <Col lg={4}>
-                            <Button type="primary" bsPrefix="button">+ Ver Facturas</Button>
+                        <Col xl={4}>
+                            <Button type="primary" bsPrefix="buttonInvoice">+ Ver Facturas</Button>
                         </Col>
                         </Row>
                         </Container>
@@ -73,13 +74,13 @@ function Dashboard() {
                             </Container>
                         </Row>
                     </Col>
-                    <Col sm={12} md={5} lg={5} style={{paddingBottom:50}}>
+                    <Col sm={12} md={5} xl={5} style={{paddingBottom:50}}>
                         <Container className="containerInside" style={{height:'100%'}}>
                             <Row>
                                 <p className="text">Suscripciones contratadas:</p>
                             </Row>
-                            <Col lg={{span:10, offset:1}} style={{height:'100%'}}>
-                                <Row className="subscriptions">
+                            <Col xl={{span:10, offset:1}} style={{height:'100%'}}>
+                                <Row className="subscriptionsContainer">
                                     <Col xs={3} lg={2}>
                                         <img
                                             alt="futbol"
@@ -93,7 +94,7 @@ function Dashboard() {
                                         <p className="subtext">Pack Fútbol</p>
                                     </Col>
                                 </Row>
-                                <Row className="subscriptions">
+                                <Row className="subscriptionsContainer">
                                     <Col xs={3} lg={2}>
                                     <img
                                         alt="natgeo"
@@ -108,9 +109,9 @@ function Dashboard() {
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <LinkContainer to="/subscriptions">
+                                    <Link to="/subscriptions">
                                         <Button type="primary" bsPrefix="buttonSubscriptions">Ver mis suscripciones</Button>
-                                    </LinkContainer>
+                                    </Link>
                                 </Row>
                             </Col>
                         </Container>
