@@ -1,17 +1,20 @@
 import React from "react";
 import './Subscriptions.scss';
 import {Container, Col, Row, Button} from "react-bootstrap";
+import {Link} from 'react-router-dom';
 
 function Subscriptions() {
     return (
         <div className="subscriptions">
-            <Container className="containerSubscriptions">
+            <Container>
                 <Row>
                     <Col sm={12} md={8} xl={10}>
                         <p className="subscriptionsTitle">Suscripciones</p>
                     </Col>
                     <Col sm={12} md={4} xl={2}>
-                        <Button type="primary" bsPrefix="button">+ Paquetes</Button>
+                        <Link to="/packages">
+                            <Button type="primary" bsPrefix="button">+ Paquetes</Button>
+                        </Link>
                         <p className="clickText">Haga click aqui para contratar más paquetes</p>
                     </Col>
                 </Row>
