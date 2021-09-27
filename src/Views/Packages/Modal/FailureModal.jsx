@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Modal, Container, Button} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 
 import {Exclamation} from 'react-bootstrap-icons'
 

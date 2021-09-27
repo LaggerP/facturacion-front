@@ -7,7 +7,7 @@ import {Container, Col, Row, Button, Card, Modal} from "react-bootstrap";
 import {HandThumbsUp} from 'react-bootstrap-icons';
 
 import InfoModal from "./Modal/InfoModal";
-import ConfirmModal from "./Modal/ConfirmModal";
+
 import SuccessModal from "./Modal/SuccessModal";
 import FailureModal from "./Modal/FailureModal";
 

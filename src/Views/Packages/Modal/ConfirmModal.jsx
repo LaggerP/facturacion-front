@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {Modal} from 'react-bootstrap';
 
@@ -6,11 +6,9 @@ import {Button, Container} from 'react-bootstrap'
 
 import {HandThumbsUp} from 'react-bootstrap-icons';
 
-import SuccessModal from "./SuccessModal";
 
 const ConfirmModal = (props) => {
 
-    const [modalSuccess, setModalSuccess] = useState(false);
 
     return (
         <Modal
