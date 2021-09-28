@@ -1,8 +1,6 @@
-.account {
+.account, html, body {
     background: #F6F6F6;
-    font-family: Raleway;
-    width: 100vw;
-    height: 100vh;
+    font-family: Raleway, sans-serif;
 }
 
 .informationContainer {
@@ -13,31 +11,24 @@
 }
 
 .accountTitle {
-    font-family: Raleway;
     font-size: 30px;
+    text-align: left;
+    padding-top: 30px;
 }
 
-.title {
-    display: flex;
+.text {
     font-size: 25px;
-    margin-top:20px;
     text-align: left;
 }
 
 .membershipTitle {
-    font-size: 15px;
-    text-align: justify;
+    font-size: 15px;  
+    padding: 0.5rem;
+    margin-top: 20px;
 }
 
-.containerTitles {
-    display: flex;
-    justify-content: space-between;
-    padding-top:40px;
-}
 
 .personalDataTitle {
     font-size: 25px ;
     text-align: left;
-    margin-bottom: 5px;
-    margin-top: 30px;
 }

@@ -8,42 +8,62 @@ function account() {
     
     return (
         <div className="account">
-            <Container className="containerTitles" >
-                <p className="accountTitle" >Cuenta</p>
-                <p className="membershipTitle" >MIEMBRO DESDE MARZO 2018</p>
-            </Container>
+            <Container>
+                <Row>
+                    <Col sm={12} md={8} xl={6}>
+                        <p className="accountTitle" >Cuenta</p>
+                    </Col>
+                    <Col sm={12} md={4} xl={6}>
+                        <p className="membershipTitle" >MIEMBRO DESDE MARZO 2018</p>
+                    </Col>
+                </Row>
 
-            <div style={{display:'flex', justifyContent:'center', padding:"15px"}}> 
-               
-                <Container >
-                    <Row>
-                        <Col sm={12} md={12} lg={12}>
-                            <Row>
-                                <p className="personalDataTitle">Datos Personales</p>
-                                <Container className="informationContainer">
-                                    <p className="title" ><b>Email: </b> JohnDoe@gmail.com</p>
-                                </Container>
-                                <Container className="informationContainer">
-                                    <p className="title" ><b>Telefono: </b> 1150497372</p>
-                                </Container>
-                                <Container className="informationContainer">
-                                    <p  className="title" ><b>Método de pago: </b>
-                                        <img
-                                            alt="tarjeta"
-                                            src={"https://logos-world.net/wp-content/uploads/2020/09/Mastercard-Symbol.jpg"}
-                                            width="100"
-                                            height="50"
-                                            style={{borderRadius:5, marginLeft:10, marginRight:10, position: "relative"}}
-                                        />
-                                        **** **** **** 1234 
-                                    </p>
-                                    
-                                </Container>
-                            </Row>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
+                <Row>
+                    <p className="personalDataTitle">Datos Personales</p>
+                </Row>
+                
+                <Row>
+                    <Container className="informationContainer">
+                        <Row>
+                            <Col sm={12} md={6} lg={6}>
+                                <p className="text" ><b>Email: </b> JohnDoe@gmail.com</p>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Row>
+
+                <Row>
+                    <Container className="informationContainer">
+                        <Row>
+                            <Col sm={12} md={6} lg={6}>
+                                <p className="text" ><b>Telefono: </b> 1150497372</p>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Row>
+                <Row>
+                    <Container className="informationContainer">
+                        <Row >
+                            <Col sm={12} md={4} lg={4}>
+                                <p  className="text" ><b>Método de pago: </b></p>
+                            </Col>
+
+                            <Col sm={12} md={8}lg={8}>
+                            <p className="text" >
+                                <img
+                                    alt="tarjeta"
+                                    src={"https://logos-world.net/wp-content/uploads/2020/09/Mastercard-Symbol.jpg"}
+                                    width="100"
+                                    height="50"
+                                    style={{borderRadius:5, marginTop:10, justifyContent:'flex-start'}}
+                                />
+                                **** **** **** 1234 
+                                </p>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Row>
+            </Container>
         </div>
         
     );
