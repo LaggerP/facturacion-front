@@ -85,19 +85,19 @@ function Invoicing() {
                         {
                         invoices.filter((inv) => {
                             if (searchTerm==""){
-                            return (
-                                <Container className="invoice">
-                                <Row>
-                                    <Col sm={12} md={6} lg={8}>
-                                        <p className="invoiceInfo">#{inv.invoiceNumber} | date | {inv.description}...</p>
-                                    </Col>
-                                    <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
-                                        <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
-                                    </Col>
-                                </Row>
-                                </Container>
+                                return (
+                                    <Container className="invoice">
+                                    <Row>
+                                        <Col sm={12} md={6} lg={8}>
+                                            <p className="invoiceInfo">#{inv.invoiceNumber} | date | {inv.description}...</p>
+                                        </Col>
+                                        <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
+                                            <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
+                                        </Col>
+                                    </Row>
+                                    </Container>
                                 )
-                            } else if (inv.invoiceNumber.toLowerCase().startsWith(searchTerm.toLowerCase())){
+                            } else if (inv.invoiceNumber.toLowerCase().includes(searchTerm.toLowerCase())){
                                 return (
                                     <Container className="invoice">
                                     <Row>
@@ -126,7 +126,6 @@ function Invoicing() {
                             }
                             newdate =  dd + "-" + mm + "-" + yyyy;
                             newdate.toString();
-                            if (index > 0) {
                             return (
                                 <Container className="invoice">
                                 <Row>
@@ -139,7 +138,6 @@ function Invoicing() {
                                 </Row>
                                 </Container>
                                 )
-                            }
                         })
                         }
                 </Row>
