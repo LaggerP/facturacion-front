@@ -1,12 +1,13 @@
 import React from "react";
 import './Invoicing.scss';
-import {Container, Col, Row, Button, Form, Spinner} from "react-bootstrap";
+import {Container, Col, Row, Button, Spinner} from "react-bootstrap";
 import {useEffect,useCallback} from "react";
 
 function Invoicing() {
     const [invoices, setInvoices] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(true);
-        
+    const [searchTerm,setSearchTerm] = React.useState('')
+
     const urlInvoice="https://notflix-fya-backend.herokuapp.com/api/invoices/"
     const userID="1";
     
@@ -71,11 +72,46 @@ function Invoicing() {
                     <p className="previousInvoices">Facturas anteriores</p>
                 </Row>         
                 <Col sm={6} className="searchBar">
-                    <Form.Control id="invoiceID" placeholder="Buscar" />
+                    <input 
+                        class="form-control"
+                        type="text"
+                        placeholder="Buscar"
+                        onChange={(event)=> {
+                            setSearchTerm(event.target.value);
+                        }}   
+                    />
                 </Col>
                 <Row>
-                    {
-                        invoices.map(function(inv,index,arr){
+                        {
+                        invoices.filter((inv) => {
+                            if (searchTerm==""){
+                            return (
+                                <Container className="invoice">
+                                <Row>
+                                    <Col sm={12} md={6} lg={8}>
+                                        <p className="invoiceInfo">#{inv.invoiceNumber} | date | {inv.description}...</p>
+                                    </Col>
+                                    <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
+                                        <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
+                                    </Col>
+                                </Row>
+                                </Container>
+                                )
+                            } else if (inv.invoiceNumber.toLowerCase().startsWith(searchTerm.toLowerCase())){
+                                return (
+                                    <Container className="invoice">
+                                    <Row>
+                                        <Col sm={12} md={6} lg={8}>
+                                            <p className="invoiceInfo">#{inv.invoiceNumber} | date | {inv.description}...</p>
+                                        </Col>
+                                        <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
+                                            <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
+                                        </Col>
+                                    </Row>
+                                    </Container>
+                                    )
+                            }
+                        }).map((inv,index)=>{
                             const date = inv.createdAt
                             var strSplitDate = String(date).split(' ');
                             var newdate = new Date(strSplitDate[0]);
@@ -91,21 +127,21 @@ function Invoicing() {
                             newdate =  dd + "-" + mm + "-" + yyyy;
                             newdate.toString();
                             if (index > 0) {
-                                return (
-                                    <Container className="invoice">
-                                    <Row>
-                                        <Col sm={12} md={6} lg={8}>
-                                            <p className="invoiceInfo">#{inv.invoiceNumber} | {newdate} | {inv.description}...</p>
-                                        </Col>
-                                        <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
-                                            <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
-                                        </Col>
-                                    </Row>
-                                    </Container>
+                            return (
+                                <Container className="invoice">
+                                <Row>
+                                    <Col sm={12} md={6} lg={8}>
+                                        <p className="invoiceInfo">#{inv.invoiceNumber} | {newdate} | {inv.description}...</p>
+                                    </Col>
+                                    <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
+                                        <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
+                                    </Col>
+                                </Row>
+                                </Container>
                                 )
                             }
                         })
-                    }
+                        }
                 </Row>
                 <Row>
                     <p className="downText">NOTA: Solo se muestra el último año del historial de facturación.</p>
