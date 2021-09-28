@@ -2,7 +2,7 @@ import React from "react";
 
 import './Account.scss';
 
-import {Container, Col, Row, Button } from "react-bootstrap";
+import {Container, Col, Row} from "react-bootstrap";
 
 function account() {
     
