@@ -1,7 +1,6 @@
 import React from "react";
 import './Invoicing.scss';
-import {Container, Col, Row, Button, Form} from "react-bootstrap";
-import Spinner from 'react-bootstrap/Spinner'
+import {Container, Col, Row, Button, Form, Spinner} from "react-bootstrap";
 import {useEffect,useCallback} from "react";
 
 function Invoicing() {
