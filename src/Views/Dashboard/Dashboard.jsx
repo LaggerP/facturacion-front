@@ -27,7 +27,9 @@ function Dashboard() {
                             <Button type="primary" bsPrefix="buttonInvoice"><Download style={{marginRight:"10px"}}/>Descargar</Button>
                         </Col>
                         <Col xl={4}>
-                            <Button type="primary" bsPrefix="buttonInvoice">+ Ver Facturas</Button>
+                            <Link to="/invoices">
+                                <Button type="primary" bsPrefix="buttonInvoice">+ Ver Facturas</Button>
+                            </Link>
                         </Col>
                         </Row>
                         </Container>

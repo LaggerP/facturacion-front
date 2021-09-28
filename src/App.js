@@ -6,6 +6,7 @@ import NotFound from './Views/NotFound/NotFound';
 import Navbar from '././Components/Navbar';
 import Subscriptions from './Views/Subscriptions/Subscriptions';
 import Packages from './Views/Packages/Packages';
+import Invoices from './Views/Invoicing/Invoicing';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route exact path="/" component={Dashboard} />
             <Route path="/subscriptions" component={Subscriptions} />
             <Route path="/packages" component={Packages} />
+            <Route path="/invoices" component={Invoices} />
             <Route path="*" component={NotFound}/>
           </Switch>
         </BrowserRouter>
