@@ -1,13 +1,6 @@
-.account, html, body {
+.account {
     background: #F6F6F6;
     font-family: Raleway, sans-serif;
-}
-
-.informationContainer {
-    background: #ffffff;
-    height: auto;
-    border-radius: 10px;
-    margin: 30px;  
 }
 
 .accountTitle {
@@ -16,17 +9,22 @@
     padding-top: 30px;
 }
 
-.text {
-    font-size: 25px;
-    text-align: left;
-}
-
 .membershipTitle {
     font-size: 15px;  
     padding: 0.5rem;
     margin-top: 20px;
 }
 
+.informationContainer {
+    background: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.text {
+    font-size: 25px;
+    text-align: left;
+}
 
 .personalDataTitle {
     font-size: 25px ;
