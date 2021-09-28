@@ -84,7 +84,7 @@ function Invoicing() {
                 <Row>
                         {
                         invoices.filter((inv) => {
-                            if (searchTerm==""){
+                            if (searchTerm === ""){
                                 return (
                                     <Container className="invoice">
                                     <Row>
