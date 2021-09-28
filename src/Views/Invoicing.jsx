@@ -75,7 +75,7 @@ function Invoicing() {
                     <input 
                         class="form-control"
                         type="text"
-                        placeholder="Ingrese aquí el número de factura a buscar"
+                        placeholder="Buscar"
                         onChange={(event)=> {
                             setSearchTerm(event.target.value);
                         }}   
@@ -83,42 +83,40 @@ function Invoicing() {
                 </Col>
                 <Row>
                         {
-                        invoices.filter((inv,index) => {
-                            if(index > 0){
-                                if (searchTerm === ""){
-                                    return (
-                                        <Container className="invoice">
-                                        <Row>
-                                            <Col sm={12} md={6} lg={8}>
-                                                <p className="invoiceInfo">#{inv.invoiceNumber} | date | {inv.description}...</p>
-                                            </Col>
-                                            <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
-                                                <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
-                                            </Col>
-                                        </Row>
-                                        </Container>
+                        invoices.filter((inv) => {
+                            if (searchTerm === ""){
+                                return (
+                                    <Container className="invoice">
+                                    <Row>
+                                        <Col sm={12} md={6} lg={8}>
+                                            <p className="invoiceInfo">#{inv.invoiceNumber} | date | {inv.description}...</p>
+                                        </Col>
+                                        <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
+                                            <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
+                                        </Col>
+                                    </Row>
+                                    </Container>
+                                )
+                            } else if (inv.invoiceNumber.toLowerCase().startsWith(searchTerm.toLowerCase())){
+                                return (
+                                    <Container className="invoice">
+                                    <Row>
+                                        <Col sm={12} md={6} lg={8}>
+                                            <p className="invoiceInfo">#{inv.invoiceNumber} | date | {inv.description}...</p>
+                                        </Col>
+                                        <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
+                                            <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
+                                        </Col>
+                                    </Row>
+                                    </Container>
                                     )
-                                } else if (inv.invoiceNumber.toLowerCase().startsWith(searchTerm.toLowerCase())){
-                                    return (
-                                        <Container className="invoice">
-                                        <Row>
-                                            <Col sm={12} md={6} lg={8}>
-                                                <p className="invoiceInfo">#{inv.invoiceNumber} | date | {inv.description}...</p>
-                                            </Col>
-                                            <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
-                                                <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
-                                            </Col>
-                                        </Row>
-                                        </Container>
-                                        )
-                                } else return false
                             } else return false
                         }).map((inv,index)=>{
                             const date = inv.createdAt
                             var strSplitDate = String(date).split(' ');
                             var newdate = new Date(strSplitDate[0]);
                             var dd = newdate.getDate();
-                            var mm = newdate.getMonth() + 1;
+                            var mm = newdate.getMonth() + 1; //January is 0!
                             var yyyy = newdate.getFullYear();
                             if (dd < 10) {
                                 dd = '0' + dd;
