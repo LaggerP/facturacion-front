@@ -4,72 +4,120 @@ import './Dashboard.scss';
 
 import {Container, Col, Row, Button} from "react-bootstrap";
 
+import {Link} from 'react-router-dom';
+
 import {Download, Pencil} from "react-bootstrap-icons"
 
 function Dashboard() {
   return (
     <div className="dashboard">
         <Container>
-        <p className="welcomeTitle" style={{paddingTop:40}}>¡Hola, Username! Es bueno tenerte de nuevo</p>
+            <p className="welcomeTitle">¡Hola, Username! Es bueno tenerte de nuevo</p>
         </Container>
-        <div style={{display:'flex', justifyContent:'center'}}>
-            <Container className="containerDashboard">
-                <Row>
-                    <Col sm={8} md={8} lg={6}>
+        <Container className="containerDashboard">
+            <Row>
+                <Col sm={12} md={6} xl={{span:5, offset:1}}>
+                    <Row>
+                        <Container className="containerInside">
                         <Row>
-                            <Container className="containerDentro">
-                                <p className="titulo" style={{fontSize:"25px"}}>Última factura:</p>
-                                <Button type="primary" bsPrefix="boton"><Download style={{marginRight:"10px"}}/>Descargar</Button>
-                                <Button type="primary" bsPrefix="boton">+ Ver Facturas</Button>
-                            </Container>
+                            <p className="text">Última factura:</p>
                         </Row>
                         <Row>
-                            <Container className="containerDentro">
-                                <p className="titulo" style={{fontSize:"25px"}}>Método de pago:</p>
-                                <Container className="containerPago">
-                                    <img
-                                        alt="tarjeta"
-                                        src={"https://logos-world.net/wp-content/uploads/2020/09/Mastercard-Symbol.jpg"}
-                                        width="100"
-                                        height="50"
-                                        style={{borderRadius:5, marginTop:10, marginRight:10, float:"left"}}
-                                    />
-                                    <p className="titulo" style={{fontSize:"20px", paddingTop:20}}>**** **** **** 1234 <Pencil style={{fontSize:25}}/></p>
-                                    <p className="titulo" style={{fontSize:"20px"}}>Nombre y Apellido: Username</p>
-                                    <p className="titulo" style={{fontSize:"20px"}}> Vencimiento: xx/yy</p>
+                        <Col xl={{span:5, offset:1}}>
+                            <Button type="primary" bsPrefix="buttonInvoice"><Download style={{marginRight:"10px"}}/>Descargar</Button>
+                        </Col>
+                        <Col xl={4}>
+                            <Button type="primary" bsPrefix="buttonInvoice">+ Ver Facturas</Button>
+                        </Col>
+                        </Row>
+                        </Container>
+                    </Row>
+                    <Row style={{paddingTop:50, paddingBottom:50}}>
+                        <Container className="containerInside">
+                            <Row>
+                                <p className="text">Método de pago:</p>
+                            </Row>
+                            <Col lg={{span:10, offset:1}}>
+                            <Container className="containerPayment">
+                                <Row >
+                                    <Col xs={6} lg={4}>
+                                        <img
+                                            alt="tarjeta"
+                                            src={"https://logos-world.net/wp-content/uploads/2020/09/Mastercard-Symbol.jpg"}
+                                            width="100"
+                                            height="50"
+                                            style={{borderRadius:5, marginTop:10, display:'flex', justifyContent:'flex-start'}}
+                                        />
+                                    </Col>
+                                    <Col xs={6} lg={8}>
+                                        <p className="subtext" style={{marginTop:20}}>**** **** **** 1234 <Pencil style={{fontSize:25}}/></p>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col lg={7}>
+                                        <p className="subtext" style={{fontWeight:"bold"}}>Nombre y Apellido:</p>
+                                    </Col>
+                                    <Col lg={5}>
+                                        <p className="subtext">Username</p>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col lg={7}>
+                                        <p className="subtext" style={{fontWeight:"bold"}}> Vencimiento:</p>
+                                    </Col>
+                                    <Col lg={5}>
+                                        <p className="subtext">xx/yy</p>
+                                    </Col>
+                                </Row>
                                 </Container>
+                            </Col>
                             </Container>
                         </Row>
                     </Col>
-                    <Col sm={8} md={8} lg={6}>
-                        <Container className="containerDentro" style={{height:510.5}}>
-                            <p className="titulo" style={{fontSize:"25px", paddingTop:20}}>Suscripciones contratadas:</p>
-                            <Container className="suscripciones">
-                                <img
-                                    alt="futbol"
-                                    src={"https://static10.tgstat.ru/channels/_0/33/332ade91fec68a741f4a31f930849649.jpg"}
-                                    width="50"
-                                    height="50"
-                                    style={{borderRadius:5,  marginRight:10, float:"left"}}
-                                />
-                                <p className="titulo" style={{fontSize:"20px"}}>Pack Fútbol</p>
-                            </Container>
-                            <Container className="suscripciones">
-                                <img
-                                    alt="natgeo"
-                                    src={"https://pbs.twimg.com/profile_images/840296895763357698/DbjCavzG_400x400.jpg"}
-                                    width="50"
-                                    height="50"
-                                    style={{borderRadius:5,  marginRight:10, float:"left"}}
-                                />
-                                <p className="titulo" style={{fontSize:"20px"}}>Pack National Geographic</p>
-                            </Container>
-                            <Button type="primary" bsPrefix="botonSuscripciones">Ver mis suscripciones</Button>
+                    <Col sm={12} md={5} xl={5} style={{paddingBottom:50}}>
+                        <Container className="containerInside" style={{height:'100%'}}>
+                            <Row>
+                                <p className="text">Suscripciones contratadas:</p>
+                            </Row>
+                            <Col xl={{span:10, offset:1}} style={{height:'100%'}}>
+                                <Row className="subscriptionsContainer">
+                                    <Col xs={3} lg={2}>
+                                        <img
+                                            alt="futbol"
+                                            src={"https://static10.tgstat.ru/channels/_0/33/332ade91fec68a741f4a31f930849649.jpg"}
+                                            width="50"
+                                            height="50"
+                                            style={{borderRadius:5}}
+                                        />
+                                    </Col>
+                                    <Col xs={9} lg={10}> 
+                                        <p className="subtext">Pack Fútbol</p>
+                                    </Col>
+                                </Row>
+                                <Row className="subscriptionsContainer">
+                                    <Col xs={3} lg={2}>
+                                    <img
+                                        alt="natgeo"
+                                        src={"https://pbs.twimg.com/profile_images/840296895763357698/DbjCavzG_400x400.jpg"}
+                                        width="50"
+                                        height="50"
+                                        style={{borderRadius:5}}
+                                    />
+                                    </Col>
+                                    <Col xs={9} lg={10}>
+                                    <p className="subtext">Pack National Geographic</p>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Link to="/subscriptions">
+                                        <Button type="primary" bsPrefix="buttonSubscriptions">Ver mis suscripciones</Button>
+                                    </Link>
+                                </Row>
+                            </Col>
                         </Container>
                     </Col>
                 </Row>
             </Container>
-        </div>
     </div>
    
   );
