@@ -5,7 +5,7 @@ import './Account.scss';
 import {Container, Col, Row} from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
 
-function account() {
+function Account() {
     
     const { userData } = useContext(UserContext);
 
@@ -72,4 +72,4 @@ function account() {
     );
 }
 
-export default account;
+export default Account;
