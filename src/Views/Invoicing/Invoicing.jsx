@@ -1,18 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import './Invoicing.scss';
 import {Container, Col, Row, Button, Spinner} from "react-bootstrap";
 import {useEffect,useCallback} from "react";
+import { apiUrl } from "../../Helper";
+import { UserContext } from "../../context/UserContext";
 
 function Invoicing() {
     const [invoices, setInvoices] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(true);
     const [searchTerm,setSearchTerm] = React.useState('')
 
-    const urlInvoice="https://notflix-fya-backend.herokuapp.com/api/invoices/"
-    const userID="1";
+    const { userData } = useContext(UserContext);
     
     const fetchMyAPI = useCallback(async () => {
-        let response = await fetch(urlInvoice+userID)
+        let response = await fetch(`${apiUrl}invoices/${userData.userData.id}`)
         response = await response.json()
         setInvoices(response.reverse())
         setIsLoading(false);

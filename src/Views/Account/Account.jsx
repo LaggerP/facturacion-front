@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import './Account.scss';
 
 import {Container, Col, Row} from "react-bootstrap";
+import { UserContext } from "../../context/UserContext";
 
 function account() {
     
+    const { userData } = useContext(UserContext);
+
     return (
         <div className="account">
             <Container>
@@ -26,7 +29,7 @@ function account() {
                     <Container className="informationContainer">
                         <Row>
                             <Col sm={12} md={6} lg={6}>
-                                <p className="text" ><b>Email: </b> JohnDoe@gmail.com</p>
+                                <p className="text" ><b>Email: </b> {userData.userData.email}</p>
                             </Col>
                         </Row>
                     </Container>
@@ -36,7 +39,7 @@ function account() {
                     <Container className="informationContainer">
                         <Row>
                             <Col sm={12} md={6} lg={6}>
-                                <p className="text" ><b>Telefono: </b> 1150497372</p>
+                                <p className="text" ><b>Telefono: </b> {userData.userData.phoneNumber}</p>
                             </Col>
                         </Row>
                     </Container>
