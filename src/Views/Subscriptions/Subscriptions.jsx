@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import './Subscriptions.scss';
 import {Container, Col, Row, Button, Spinner} from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import {useEffect,useCallback} from "react";
+import { apiUrl } from "../../Helper";
+import { UserContext } from "../../context/UserContext";
 
 function Subscriptions() {
     const [subscriptions, setSubscriptions] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const urlSubscriptions="https://notflix-fya-backend.herokuapp.com/api/subscriptions/1";
+    const { userData } = useContext(UserContext);
 
     const fetchMyAPI = useCallback(async () => {
-        let response = await fetch(urlSubscriptions)
+        let response = await fetch(`${apiUrl}subscriptions/${userData.userData.id}`)
         response = await response.json()
         setSubscriptions(response.reverse())
         setIsLoading(false);
