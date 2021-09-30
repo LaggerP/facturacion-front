@@ -1,11 +1,32 @@
 import React from "react";
 import './Subscriptions.scss';
-import {Container, Col, Row, Button} from "react-bootstrap";
+import {Container, Col, Row, Button, Spinner} from "react-bootstrap";
 import {Link} from 'react-router-dom';
+import {useEffect,useCallback} from "react";
 
 function Subscriptions() {
+    const [subscriptions, setSubscriptions] = React.useState(null);
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    const urlSubscriptions="https://notflix-fya-backend.herokuapp.com/api/subscriptions/1";
+
+    const fetchMyAPI = useCallback(async () => {
+        let response = await fetch(urlSubscriptions)
+        response = await response.json()
+        setSubscriptions(response.reverse())
+        setIsLoading(false);
+      }, [])
+      
+      useEffect(() => {
+        fetchMyAPI()
+      }, [fetchMyAPI])
+
     return (
         <div className="subscriptions">
+            { isLoading ? (<Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>)
+          : (
             <Container>
                 <Row>
                     <Col sm={12} md={8} xl={10}>
@@ -22,52 +43,22 @@ function Subscriptions() {
                     <p className="contractedPackages">Paquetes Contratados</p>
                 </Row>
                 <Row>
-                    <Container className="package">
-                        <Row>
-                            <Col sm={12} md={6} lg={6}>
-                                <p className="packageName">Pack Futbol</p>
-                            </Col>
-                            <Col sm={12} md={6} lg={6} style={{display: "flex", justifyContent:"flex-end"}}>
-                                <Button type="primary" bsPrefix="cancel btnTextColor">Cancelar Suscripción</Button>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Row>
-                <Row>
-                    <Container className="package">
-                        <Row>
-                            <Col sm={12} md={6} lg={6}>
-                                <p className="packageName">Pack Disney</p>
-                            </Col>
-                            <Col sm={12} md={6} lg={6} style={{display: "flex", justifyContent:"flex-end"}}>
-                                <Button type="primary" bsPrefix="cancel btnTextColor">Cancelar Suscripción</Button>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Row>
-                <Row>
-                    <Container className="package">
-                        <Row>
-                            <Col sm={12} md={6} lg={6}>
-                                <p className="packageName">Pack Marvel</p>
-                            </Col>
-                            <Col sm={12} md={6} lg={6} style={{display: "flex", justifyContent:"flex-end"}}>
-                                <Button type="primary" bsPrefix="cancel btnTextColor">Cancelar Suscripción</Button>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Row>
-                <Row>
-                    <Container className="package">
-                        <Row>
-                            <Col sm={12} md={6} lg={6}>
-                                <p className="packageName">Pack National Geographic</p>
-                            </Col>
-                            <Col sm={12} md={6} lg={6} style={{display: "flex", justifyContent:"flex-end"}}>
-                                <Button type="primary" bsPrefix="cancel btnTextColor">Cancelar Suscripción</Button>
-                            </Col>
-                        </Row>
-                    </Container>
+                {
+                        subscriptions.map(function(sub,index,arr){
+                                return (
+                                    <Container className="package">
+                                    <Row>
+                                        <Col sm={12} md={6} lg={6}>
+                                            <p className="packageName">{sub.name}</p>
+                                        </Col>
+                                        <Col sm={12} md={6} lg={6} style={{display: "flex", justifyContent:"flex-end"}}>
+                                            <Button type="primary" bsPrefix="cancel btnTextColor">Cancelar Suscripción</Button>
+                                        </Col>
+                                    </Row>
+                                    </Container>
+                                )
+                        })
+                    }
                 </Row>
                 <Row>
                     <p className="contractedPackages">Facturación</p>
@@ -87,7 +78,8 @@ function Subscriptions() {
                 <Row>
                     <p className="downText">Las cuotas de las suscripciones se facturan al principio de cada período y podrían aparecer en tu cuenta algunos días después de la fecha de facturación.</p>
                 </Row>
-            </Container>
+            </Container> )
+        }
         </div>
     );
 }
