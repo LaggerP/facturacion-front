@@ -1,11 +1,30 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import './Account.scss';
 
 import {Container, Col, Row} from "react-bootstrap";
 
-function account() {
+function Account() {
+
+    const [email, setEmail] = React.useState();
+    const [phoneNumber, setPhoneNumber] = React.useState();
+
+    const getData = async () => {
+  
     
+        return await fetch("https://notflix-fya-backend.herokuapp.com/api/users/1")
+        .then((response) => response.json())
+        .then((json) => {
+            setEmail(json.email);
+            setPhoneNumber(json.phoneNumber);
+        })
+        
+    }
+
+    useEffect( async () => {
+        await getData();
+    }, []);
+
     return (
         <div className="account">
             <Container>
@@ -26,7 +45,7 @@ function account() {
                     <Container className="informationContainer">
                         <Row>
                             <Col sm={12} md={6} lg={6}>
-                                <p className="text" ><b>Email: </b> JohnDoe@gmail.com</p>
+                                <p className="text" ><b>Email: </b>{email} </p>
                             </Col>
                         </Row>
                     </Container>
@@ -36,7 +55,7 @@ function account() {
                     <Container className="informationContainer">
                         <Row>
                             <Col sm={12} md={6} lg={6}>
-                                <p className="text" ><b>Telefono: </b> 1150497372</p>
+                                <p className="text" ><b>Telefono: </b> {phoneNumber}</p>
                             </Col>
                         </Row>
                     </Container>
@@ -69,4 +88,4 @@ function account() {
     );
 }
 
-export default account;
+export default Account;

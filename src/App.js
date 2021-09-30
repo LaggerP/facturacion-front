@@ -8,22 +8,25 @@ import Navbar from '././Components/Navbar';
 import Subscriptions from './Views/Subscriptions/Subscriptions';
 import Packages from './Views/Packages/Packages';
 import Invoices from './Views/Invoicing/Invoicing';
+import { UserProvider } from './context/UserContext';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar/>
-      <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Dashboard} />
-            <Route path="/account" component={Account} />
-            <Route path="/subscriptions" component={Subscriptions} />
-            <Route path="/packages" component={Packages} />
-            <Route path="/invoices" component={Invoices} />
-            <Route path="*" component={NotFound}/>
-          </Switch>
-        </BrowserRouter>
-    </div>
+    <UserProvider>
+      <div className="App">
+        <Navbar/>
+        <BrowserRouter>
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/account" component={Account} />
+              <Route path="/subscriptions" component={Subscriptions} />
+              <Route path="/packages" component={Packages} />
+              <Route path="/invoices" component={Invoices} />
+              <Route path="*" component={NotFound}/>
+            </Switch>
+          </BrowserRouter>
+      </div>
+    </UserProvider>
   );
 }
 
