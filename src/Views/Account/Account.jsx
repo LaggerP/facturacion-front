@@ -1,13 +1,29 @@
-import React, {useContext} from "react";
+import React, {useEffect} from "react";
 
 import './Account.scss';
 
 import {Container, Col, Row} from "react-bootstrap";
-import { UserContext } from "../../context/UserContext";
 
 function Account() {
+
+    const [email, setEmail] = React.useState();
+    const [phoneNumber, setPhoneNumber] = React.useState();
+
+    const getData = async () => {
+  
     
-    const { userData } = useContext(UserContext);
+        return await fetch("https://notflix-fya-backend.herokuapp.com/api/users/1")
+        .then((response) => response.json())
+        .then((json) => {
+            setEmail(json.email);
+            setPhoneNumber(json.phoneNumber);
+        })
+        
+    }
+
+    useEffect( async () => {
+        await getData();
+    }, []);
 
     return (
         <div className="account">
@@ -29,7 +45,7 @@ function Account() {
                     <Container className="informationContainer">
                         <Row>
                             <Col sm={12} md={6} lg={6}>
-                                <p className="text" ><b>Email: </b> {userData.userData.email}</p>
+                                <p className="text" ><b>Email: </b>{email} </p>
                             </Col>
                         </Row>
                     </Container>
@@ -39,7 +55,7 @@ function Account() {
                     <Container className="informationContainer">
                         <Row>
                             <Col sm={12} md={6} lg={6}>
-                                <p className="text" ><b>Telefono: </b> {userData.userData.phoneNumber}</p>
+                                <p className="text" ><b>Telefono: </b> {phoneNumber}</p>
                             </Col>
                         </Row>
                     </Container>
