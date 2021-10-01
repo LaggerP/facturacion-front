@@ -14,15 +14,32 @@ function App() {
   return (
     <UserProvider>
       <div className="App">
-        <Navbar/>
         <BrowserRouter>
             <Switch>
-              <Route exact path="/" component={Dashboard} />
-              <Route path="/account" component={Account} />
-              <Route path="/subscriptions" component={Subscriptions} />
-              <Route path="/packages" component={Packages} />
-              <Route path="/invoices" component={Invoices} />
-              <Route path="*" component={NotFound}/>
+              <Route exact path="/">
+                <Navbar/>
+                <Dashboard/>
+              </Route>
+              <Route exact path="/account">
+                <Navbar/>
+                <Account/>
+              </Route>
+              <Route exact path="/subscriptions">
+                <Navbar/>
+                <Subscriptions/>
+              </Route>
+              <Route exact path="/packages">
+                <Navbar/>
+                <Packages/>
+              </Route>
+              <Route exact path="/invoices">
+                <Navbar/>
+                <Invoices/>
+              </Route>
+              <Route exact path="*">
+                <Navbar/>
+                <NotFound/>
+              </Route>
             </Switch>
           </BrowserRouter>
       </div>
