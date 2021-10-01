@@ -155,17 +155,19 @@ function Dashboard() {
            
         );
     } else {
-        return <div className="dashboard">
-                    <Container>
-                        <Row style={{paddingTop:30}}>
-                            <Col style={{background: '#ffffff',border: "1px solid #C78C36"}}>
-                                <p style={{color: '#D11B1B', fontWeight:'bold', fontSize:40, textAlign:'center'}}>¡UPS!</p>
-                                <p style={{textAlign:'center', fontSize:18, textAlign:'center'}}>Ocurrio un error interno y no se pudo llevar a cabo la operación</p>
-                                <p style={{textAlign:'center', fontSize:18, textAlign:'center'}}>Por favor, intenta ingresar nuevamente a la sesión.</p>
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>;
+        return (
+            <div className="dashboard">
+                <Container>
+                    <Row style={{paddingTop:30}}>
+                        <Col style={{background: '#ffffff',border: "1px solid #C78C36"}}>
+                            <p style={{color: '#D11B1B', fontWeight:'bold', fontSize:40, textAlign:'center'}}>¡UPS!</p>
+                            <p style={{textAlign:'center', fontSize:18, textAlign:'center'}}>Ocurrio un error interno y no se pudo llevar a cabo la operación</p>
+                            <p style={{textAlign:'center', fontSize:18, textAlign:'center'}}>Por favor, intenta ingresar nuevamente a la sesión.</p>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+        );
         
     }
   
