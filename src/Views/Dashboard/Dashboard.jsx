@@ -15,9 +15,9 @@ function Dashboard() {
 
     const { userData, userLogged, setUserData, setUserLogged } = useContext(UserContext);
 
-    const validarUsuario = async () => {
+    const userValidate = async () => {  // function to validate if user is really logged
       
-        let request = await fetch(`${apiUrl}users/${client}/${token}`, {
+        let request = await fetch(`${apiUrl}/users/${client}/${token}`, {
            method: 'GET',
            headers: {
               'Accept': 'application/json',
@@ -25,25 +25,24 @@ function Dashboard() {
            }
         });
         let response = await request.json();
-        
 
         if (request.status !== 200) {
             setUserLogged(false);
         } else {
-            setUserData(response);
+            setUserData(response); //set the information of the user. 
             setUserLogged(true);
         }
     }
 
     useEffect( async () => {
-        await validarUsuario();
+        await userValidate();
     }, []);
 
     if(userData && userLogged){
         return (
             <div className="dashboard">
                 <Container>
-                    <p className="welcomeTitle">¡Hola, {userData.userData.firstName}! Es bueno tenerte de nuevo</p>
+                    <p className="welcomeTitle">¡Hola, {userData.userData.firstName} {userData.userData.lastName}! Es bueno tenerte de nuevo</p>
                 </Container>
                 <Container className="containerDashboard">
                     <Row>

@@ -3,7 +3,6 @@ import React, {useContext} from "react";
 import './Account.scss';
 
 import {Container, Col, Row} from "react-bootstrap";
-import { apiUrl } from "../../Helper";
 import { UserContext } from "../../context/UserContext";
 
 function Account() {
