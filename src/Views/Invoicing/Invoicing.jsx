@@ -11,17 +11,24 @@ function Invoicing() {
     const [searchTerm,setSearchTerm] = React.useState('')
 
     const { userData } = useContext(UserContext);
-    
-    const fetchMyAPI = useCallback(async () => {
-        let response = await fetch(`${apiUrl}invoices/${userData.userData.id}`)
+
+    const fetchMyAPI = useCallback(async () => { //function to get the invoices that have the user
+        let response = await fetch(`${apiUrl}/invoices/${userData.userData.id}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userData.token
+            }
+        });
         response = await response.json()
         setInvoices(response.reverse())
         setIsLoading(false);
-      }, [])
+    }, [])
       
-      useEffect(() => {
+    useEffect(() => {
         fetchMyAPI()
-      }, [fetchMyAPI])
+    }, [fetchMyAPI]);
 
     return (
         <div className="invoicing">

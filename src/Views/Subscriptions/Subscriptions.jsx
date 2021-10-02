@@ -12,16 +12,23 @@ function Subscriptions() {
 
     const { userData } = useContext(UserContext);
 
-    const fetchMyAPI = useCallback(async () => {
-        let response = await fetch(`${apiUrl}subscriptions/${userData.userData.id}`)
+    const fetchMyAPI = useCallback(async () => { // function to get the suscription of the user
+        let response = await fetch(`${apiUrl}/subscriptions/${userData.userData.id}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userData.token
+            }
+        });
         response = await response.json()
         setSubscriptions(response.reverse())
         setIsLoading(false);
       }, [])
       
-      useEffect(() => {
+    useEffect(() => {
         fetchMyAPI()
-      }, [fetchMyAPI])
+    }, [fetchMyAPI]);
 
     return (
         <div className="subscriptions">
