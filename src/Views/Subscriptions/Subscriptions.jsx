@@ -85,8 +85,7 @@ function Subscriptions() {
                                                     onClick={() => {
                                                         setSubs(sub), 
                                                         setModalCancelSubscriptions(true)
-                                                    }}
-                                                >
+                                                    }}>
                                                     Cancelar Suscripción
                                                 </Button>
                                             </Col>
@@ -125,8 +124,8 @@ function Subscriptions() {
                 onHide={() => setModalCancelSubscriptions(false)}
                 size="md"
                 aria-labelledby="contained-modal-title-vcenter"
-                centered
-            >
+                centered>
+                    
                 <Modal.Body style={{ border: "1px solid #C78C36"}}>
                     <p style={{textAlign:'center', fontSize:20, color:'#C78C36'}}>CANCELAR SUSCRIPCIÓN</p>
                     <br></br>
@@ -138,8 +137,7 @@ function Subscriptions() {
                             style={{fontSize:20, color:'#C78C36', backgroundColor: '#FFF', borderColor: '#FFF', }}
                             onClick={() =>{
                                 setModalCancelSubscriptions(false)
-                            }}
-                        >
+                            }}>
                             Cancelar
                         </Button>
                         <Button
@@ -149,8 +147,7 @@ function Subscriptions() {
                                 setModalCancelSubscriptions(false),
                                 setModalSuccess(true),
                                 fetchMyAPI()
-                            }}
-                        >
+                            }}>
                             Aceptar
                         </Button>
                     </Container>
