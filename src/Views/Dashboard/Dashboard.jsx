@@ -156,34 +156,29 @@ function Dashboard() {
                                   <p className="text">Suscripciones contratadas:</p>
                               </Row>
                               <Col xl={{span: 10, offset: 1}} style={{height: '100%'}}>
-                                  <Row className="subscriptionsContainer">
-                                      <Col xs={3} lg={2}>
-                                          <img
-                                            alt="futbol"
-                                            src={"https://static10.tgstat.ru/channels/_0/33/332ade91fec68a741f4a31f930849649.jpg"}
-                                            width="50"
-                                            height="50"
-                                            style={{borderRadius: 5}}
-                                          />
-                                      </Col>
-                                      <Col xs={9} lg={10}>
-                                          <p className="subtext">Pack Fútbol</p>
-                                      </Col>
-                                  </Row>
-                                  <Row className="subscriptionsContainer">
-                                      <Col xs={3} lg={2}>
-                                          <img
-                                            alt="natgeo"
-                                            src={"https://pbs.twimg.com/profile_images/840296895763357698/DbjCavzG_400x400.jpg"}
-                                            width="50"
-                                            height="50"
-                                            style={{borderRadius: 5}}
-                                          />
-                                      </Col>
-                                      <Col xs={9} lg={10}>
-                                          <p className="subtext">Pack National Geographic</p>
-                                      </Col>
-                                  </Row>
+                                    {
+                                        userData.packages.map( function(pack) {
+                                            if (pack.subscribed == true) {
+                                                return (
+                                                    <Row className="subscriptionsContainer">
+                                                        <Col xs={3} lg={2}>
+                                                            <img
+                                                                alt={pack.name}
+                                                                src={pack.uriImg}
+                                                                width="50"
+                                                                height="50"
+                                                                style={{borderRadius:5}}
+                                                            />
+                                                        </Col>
+                                                        <Col xs={9} lg={10}> 
+                                                            <p className="subtext">{pack.name}</p>
+                                                        </Col>
+                                                    </Row>
+                                                )
+                                            }
+                                        })
+                                    }
+
                                   <Row>
                                       <Link to="/subscriptions">
                                           <Button type="primary" bsPrefix="buttonSubscriptions">Ver mis
