@@ -25,7 +25,25 @@ function Invoicing() {
         setInvoices(response.reverse())
         setIsLoading(false);
     }, [])
-      
+
+    const downloadInvoice = async (invoiceId, userId, invoiceNumber) => {
+        let invoice = await fetch(`${apiUrl}/invoices/pdf/${userId}/${invoiceId}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userData.token
+            }
+        });
+        invoice = await invoice.json();
+        const linkSource = `data:application/pdf;base64,${invoice}`;
+        const downloadLink = document.createElement("a");
+        const fileName = `Factura - #${invoiceNumber}.pdf`;
+        downloadLink.href = linkSource;
+        downloadLink.download = fileName;
+        downloadLink.click();
+    }
+
     useEffect(() => {
         fetchMyAPI()
     }, [fetchMyAPI]);
@@ -46,28 +64,28 @@ function Invoicing() {
                         {
                         invoices.map(function(inv,index,arr){
                             const date = inv.createdAt
-                            var strSplitDate = String(date).split(' ');
-                            var newdate = new Date(strSplitDate[0]);
-                            var dd = newdate.getDate();
-                            var mm = newdate.getMonth() + 1; //January is 0!
-                            var yyyy = newdate.getFullYear();
+                            const strSplitDate = String(date).split(' ');
+                            let newDate = new Date(strSplitDate[0]);
+                            let dd = newDate.getDate();
+                            let mm = newDate.getMonth() + 1; //January is 0!
+                            const yyyy = newDate.getFullYear();
                             if (dd < 10) {
                                 dd = '0' + dd;
                             }
                             if (mm < 10) {
                                 mm = '0' + mm;
                             }
-                            newdate =  dd + "-" + mm + "-" + yyyy;
-                            newdate.toString();
+                            newDate =  dd + "-" + mm + "-" + yyyy;
+                            newDate.toString();
                             if (0 === index) {
                                 return (
                                     <Container className="lastInvoice">
                                     <Row>
                                         <Col sm={12} md={1} lg={8}>
-                                            <p className="invoiceInfo">#{inv.invoiceNumber} | {newdate} | {inv.description}...</p>
+                                            <p className="invoiceInfo">#{inv.invoiceNumber} | {newDate} | {inv.description}...</p>
                                         </Col>
                                         <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
-                                            <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
+                                            <Button type="primary" bsPrefix="view btnTextColor" onClick={()=>downloadInvoice(inv.id, inv.userId, inv.invoiceNumber)}>Ver factura</Button>
                                         </Col>
                                     </Row>
                                     </Container>
@@ -78,15 +96,15 @@ function Invoicing() {
                 </Row>
                 <Row>
                     <p className="previousInvoices">Facturas anteriores</p>
-                </Row>         
+                </Row>
                 <Col sm={6} className="searchBar">
-                    <input 
-                        class="form-control"
+                    <input
+                        className="form-control"
                         type="text"
                         placeholder="Ingrese aquí el número de factura a buscar"
                         onChange={(event)=> {
                             setSearchTerm(event.target.value);
-                        }}   
+                        }}
                     />
                 </Col>
                 <Row>
@@ -122,12 +140,13 @@ function Invoicing() {
                                 } else return false
                             } else return false
                         }).map((inv,index)=>{
+                            console.log(inv)
                             const date = inv.createdAt
-                            var strSplitDate = String(date).split(' ');
-                            var newdate = new Date(strSplitDate[0]);
-                            var dd = newdate.getDate();
-                            var mm = newdate.getMonth() + 1;
-                            var yyyy = newdate.getFullYear();
+                            const strSplitDate = String(date).split(' ');
+                            let newdate = new Date(strSplitDate[0]);
+                            let dd = newdate.getDate();
+                            let mm = newdate.getMonth() + 1;
+                            const yyyy = newdate.getFullYear();
                             if (dd < 10) {
                                 dd = '0' + dd;
                             }
@@ -143,7 +162,7 @@ function Invoicing() {
                                         <p className="invoiceInfo">#{inv.invoiceNumber} | {newdate} | {inv.description}...</p>
                                     </Col>
                                     <Col sm={12} md={6} lg={4} style={{display: "flex", justifyContent:"flex-end"}}>
-                                        <Button type="primary" bsPrefix="view btnTextColor">Ver factura</Button>
+                                        <Button type="primary" bsPrefix="view btnTextColor" onClick={()=>downloadInvoice(inv.id, inv.userId, inv.invoiceNumber)}>Ver factura</Button>
                                     </Col>
                                 </Row>
                                 </Container>
@@ -154,10 +173,10 @@ function Invoicing() {
                 <Row>
                     <p className="downText">NOTA: Solo se muestra el último año del historial de facturación.</p>
                 </Row>
-            </Container>  )  
-        }    
+            </Container>  )
+        }
         </div>
-        
+
     );
 }
 
