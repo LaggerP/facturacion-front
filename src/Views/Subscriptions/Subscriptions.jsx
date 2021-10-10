@@ -81,7 +81,7 @@ function Subscriptions() {
                                                 <p className="packageName">{sub.name}</p>
                                             </Col>
                                             <Col sm={12} md={6} lg={6} style={{display: "flex", justifyContent:"flex-end"}}>
-                                                <Button type="primary" bsPrefix="cancel btnTextColor" onClick={() => {setSubs(sub), setModalCancelSubscriptions(true)}}> Cancelar Suscripción </Button>
+                                                <Button type="primary" bsPrefix="cancel btnTextColor" onClick={() => {setSubs(sub); setModalCancelSubscriptions(true);}}> Cancelar Suscripción </Button>
                                             </Col>
                                         </Row>
                                         </Container>
@@ -127,8 +127,8 @@ function Subscriptions() {
                     <br></br>
                     <p style={{textAlign:'center', fontSize:18, textAlign:'left', marginRight:'15px', marginLeft:'15px'}}>Por favor, presione en el boton “Aceptar” para confirmar la operación.</p>
                     <Container style={{display:'flex', justifyContent:'center'}}>
-                        <Button style={{fontSize:20, color:'#C78C36', backgroundColor: '#FFF', borderColor: '#FFF', }} onClick={() =>{ setModalCancelSubscriptions(false) }}>Cancelar</Button>
-                        <Button style={{fontSize:20, color:'#C78C36', backgroundColor: '#FFF', borderColor: '#FFF'}} onClick={() => { cambiarEstadoSuscripcion(subs.userId, subs.subscriptionId, subs.packageId), setModalCancelSubscriptions(false), setModalSuccess(true), fetchMyAPI() }}>Aceptar</Button>
+                        <Button style={{fontSize:20, color:'#C78C36', backgroundColor: '#FFF', borderColor: '#FFF', }} onClick={() =>{ setModalCancelSubscriptions(false); }}>Cancelar</Button>
+                        <Button style={{fontSize:20, color:'#C78C36', backgroundColor: '#FFF', borderColor: '#FFF'}} onClick={() => { cambiarEstadoSuscripcion(subs.userId, subs.subscriptionId, subs.packageId); setModalCancelSubscriptions(false); setModalSuccess(true); fetchMyAPI(); }}>Aceptar</Button>
                     </Container>
                 </Modal.Body>
             </Modal>
