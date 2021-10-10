@@ -22,11 +22,11 @@ function Account() {
                             <p className="membershipTitle" >MIEMBRO DESDE MARZO 2018</p>
                         </Col>
                     </Row>
-    
+
                     <Row>
                         <p className="personalDataTitle">Datos Personales</p>
                     </Row>
-                    
+
                     <Row>
                         <Container >
                             <Row className="informationContainer">
@@ -36,7 +36,7 @@ function Account() {
                             </Row>
                         </Container>
                     </Row>
-    
+
                     <Row>
                         <Container className="informationContainer">
                             <Row>
@@ -52,7 +52,7 @@ function Account() {
                                 <Col sm={12} md={4} lg={4}>
                                     <p  className="text" ><b>Método de pago: </b></p>
                                 </Col>
-    
+
                                 <Col sm={12} md={8}lg={8}>
                                 <p className="text" >
                                     <img
@@ -62,7 +62,7 @@ function Account() {
                                         height="50"
                                         style={{borderRadius:5, marginTop:10, justifyContent:'flex-start'}}
                                     />
-                                    **** **** **** 1234 
+                                    **** **** **** 1234
                                     </p>
                                 </Col>
                             </Row>
@@ -70,7 +70,7 @@ function Account() {
                     </Row>
                 </Container>
             </div>
-            
+
         );
     } else {
         return  (
@@ -79,14 +79,14 @@ function Account() {
                 <Row style={{paddingTop:30}}>
                         <Col style={{background: '#ffffff',border: "1px solid #C78C36"}}>
                             <p style={{color: '#D11B1B', fontWeight:'bold', fontSize:40, textAlign:'center'}}>¡UPS!</p>
-                            <p style={{textAlign:'center', fontSize:18, textAlign:'center'}}>Ocurrio un error interno y no se pudo llevar a cabo la operación</p>
-                            <p style={{textAlign:'center', fontSize:18, textAlign:'center'}}>Por favor, intenta ingresar nuevamente a la sesión.</p>
+                            <p style={{fontSize:18, textAlign:'center'}}>Ocurrio un error interno y no se pudo llevar a cabo la operación</p>
+                            <p style={{fontSize:18, textAlign:'center'}}>Por favor, intenta ingresar nuevamente a la sesión.</p>
                         </Col>
                     </Row>
                 </Container>
             </div>
         );
     }
-}   
+}
 
 export default Account;

@@ -59,15 +59,6 @@ function Dashboard() {
     }, []);
 
     if (userData && userLogged) {
-        const downloadNotLoading = () => <><Download style={{marginRight: "10px"}}/>Descargar</>
-        const downloadLoading = () => <> <Spinner
-          as="span"
-          animation="border"
-          size="sm"
-          role="status"
-          aria-hidden="true"
-        />Descargando</>
-
         return (
           <div className="dashboard">
               <Container>
@@ -90,15 +81,15 @@ function Dashboard() {
                                                   disabled={isLoading}
                                                   title="Descargar última factura"
                                                   onClick={() => downloadLastInvoice()}>
-                                              {isLoading ? <Spinner
-                                                as="span"
-                                                animation="border"
-                                                size="sm"
-                                                role="status"
-                                                aria-hidden="true"
-                                                style={{marginRight: "10px"}}
-                                              />: <Download style={{marginRight: "10px"}}/>}
-                                              Descargar
+                                              {isLoading ?
+                                                (<><Spinner
+                                                  as="span"
+                                                  animation="border"
+                                                  size="sm"
+                                                  role="status"
+                                                  aria-hidden="true"
+                                                  style={{marginRight: "10px"}}
+                                                />Descargando </>): (<><Download style={{marginRight: "10px"}}/>Descargar</>)}
                                           </Button>
                                       </Col>
                                       <Col xl={4}>
@@ -214,7 +205,7 @@ function Dashboard() {
                   <Row style={{paddingTop: 30}}>
                       <Col style={{background: '#ffffff', border: "1px solid #C78C36"}}>
                           <p style={{color: '#D11B1B', fontWeight: 'bold', fontSize: 40, textAlign: 'center'}}>¡UPS!</p>
-                          <p style={{textAlign: 'center', fontSize: 18}}>Ocurrio un error interno y no se pudo llevar a
+                          <p style={{textAlign: 'center', fontSize: 18}}>Ocurrió un error interno y no se pudo llevar a
                               cabo la operación</p>
                           <p style={{textAlign: 'center', fontSize: 18}}>Por favor, intenta ingresar nuevamente a la
                               sesión.</p>
