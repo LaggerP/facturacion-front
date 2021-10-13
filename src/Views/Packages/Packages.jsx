@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import './Packages.scss';
 
-import {Container, Col, Row, Button, Card, Modal} from "react-bootstrap";
+import {Container, Col, Row, Button, Card, Modal, Carousel, CarouselItem} from "react-bootstrap";
 
 import {HandThumbsUp} from 'react-bootstrap-icons';
 
@@ -18,6 +18,24 @@ function Packages() {
     const [modalSuccess, setModalSuccess] = useState(false);
     const [modalFailure, setModalFailure] = useState(false);
     const [dataModal, setDataModal] = useState();
+    const [paquetes, setPaquetes] = useState();
+
+    const getPaquetes = async() => {
+            let request = await fetch('https://suscripciones-backend.herokuapp.com/api/packages/v1/list', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }); 
+            let response = await request.json();
+            setPaquetes(response.data);
+        }
+
+    useEffect(async () => {
+        await getPaquetes();
+        console.log(paquetes[0]);
+    }, []);
 
     return (
       <div className="packages">
@@ -25,6 +43,34 @@ function Packages() {
               <Row>
                   <p className='packagesTitle'>Paquetes</p>
               </Row>
+              <Row>
+              
+                {/* {
+                    paquetes.map((sub, key) => {
+                        if (sub.estado="activo") {
+                            return (
+                                <Col xs={6} xl={3} style={{paddingTop: 30}}>
+                                    <Card bsPrefix="packageCard">
+                                    <Card.Img variant='top' className='cardImages'
+                                        src={sub.imagen == null? 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png': sub.imagen}/>
+                                    <Card.Body>
+                                        <Card.Title className="cardTitle">Pack {sub.nombre}</Card.Title>
+                                        <Card.Text className="cardText">${sub.precio} /mes</Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer bsPrefix="cardFooter" onClick={() => {
+                                        setModalInfoShow(true);
+                                        setDataModal('Pack Futbol')
+                                    }}>Ver más</Card.Footer>
+                                            </Card>
+                                </Col>
+                            )
+                        }
+                    })
+                } */}
+              </Row>
+              <Row>
+              <Carousel fade>
+              <CarouselItem>
               <Row>
                   <Col xs={6} xl={3} style={{paddingTop: 30}}>
                       <Card bsPrefix="packageCard">
@@ -40,6 +86,7 @@ function Packages() {
                           }}>Ver más</Card.Footer>
                       </Card>
                   </Col>
+                
                   <Col xs={6} xl={3} style={{paddingTop: 30}}>
                       <Card bsPrefix="packageCard">
                           <Card.Img variant='top' className='cardImages'
@@ -57,6 +104,7 @@ function Packages() {
                           }}>Ver más</Card.Footer>
                       </Card>
                   </Col>
+         
                   <Col xs={6} xl={3} style={{paddingTop: 30}}>
                       <Card bsPrefix="packageCard">
                           <Card.Img variant='top' className='cardImages'
@@ -86,6 +134,11 @@ function Packages() {
                           }}>Ver más</Card.Footer>
                       </Card>
                   </Col>
+                  </Row>
+
+                
+                </CarouselItem>
+                </Carousel>
               </Row>
               <Row>
                   <p className='bottomText'>Adquirí tus suscripciones, con estos precios exclusivos</p>
