@@ -28,6 +28,7 @@ function Subscriptions() {
         response = await response.json()
         setSubscriptions(response.reverse())
         setIsLoading(false);
+        console.log(response);
     }, [])
 
     const cambiarEstadoSuscripcion = useCallback(async (userId, subscriptionId, packageId) => {

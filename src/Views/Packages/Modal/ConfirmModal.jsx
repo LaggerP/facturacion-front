@@ -6,6 +6,9 @@ import {Button, Container} from 'react-bootstrap'
 
 import {HandThumbsUp} from 'react-bootstrap-icons';
 
+import SuccessModal from "./SuccessModal";
+import FailureModal from "./FailureModal";
+
 
 const ConfirmModal = (props) => {
 
