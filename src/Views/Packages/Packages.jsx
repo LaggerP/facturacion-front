@@ -51,6 +51,7 @@ function Packages() {
             },
             body: JSON.stringify({
                 userId:userData.userData.id, 
+                userObjectId: '507f1f77bcf86cd99',
                 email:userData.userData.email,
                 name:packageName, 
                 subscriptionId:userData.packages[0].subscriptionId,
@@ -63,6 +64,8 @@ function Packages() {
             })
         });
         let response = await request.json();
+        console.log(response.status)
+        console.log(request.status)
         if (response.status == 201) {
             setModalSuccess(true)
         } else{
@@ -133,12 +136,14 @@ function Packages() {
                                                 {
                                                     userData.packages.map( function(pack) {
                                                         if (pack.packageId == sub.id_paquete){
-                                                            packagesHired.push(sub.id_paquete)
+                                                            if (pack.subscribed == true) {
+                                                                packagesHired.push(sub.id_paquete)
+                                                            }
                                                         } 
                                                     })
                                                 }
                                                 {
-                                                    packagesHired.some(item => item === sub.id_paquete) ? 
+                                                    packagesHired.some(item => item === sub.id_paquete)? 
                                                     <Button type="primary" bsPrefix="buttonPackagesTransparent" disabled>Contratar</Button>
                                                     : 
                                                     <Button type="primary" bsPrefix="buttonPackages" onClick={() => {
@@ -198,6 +203,7 @@ function Packages() {
                             onClick={() => {
                                 setModalConfirmShow(false);
                                 hirePackage(dataConfirm.packageName, dataConfirm.packageIdNumber, dataConfirm.packageCost, dataConfirm.packageImage)
+                                setModalSuccess(true)
                             }}>Confirmar</Button>
                       </Container>
                   </Modal.Body>
