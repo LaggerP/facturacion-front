@@ -63,7 +63,11 @@ function Packages() {
             })
         });
         let response = await request.json();
-        console.log(response)
+        if (response.status == 201) {
+            setModalSuccess(true)
+        } else{
+            setModalFailure(true)
+        }
     }
 
     useEffect(async () => {
@@ -113,9 +117,6 @@ function Packages() {
                       <p className='packagesTitle'>Paquetes</p>
                   </Row>
                   <Row>
-                    <div>{console.log(userData.packages[0].subscriptionId)}</div>
-                    
-                    
                     <Slider {...settings}>
                       {
                           paquetes.map((sub, key) => {
@@ -197,7 +198,6 @@ function Packages() {
                             onClick={() => {
                                 setModalConfirmShow(false);
                                 hirePackage(dataConfirm.packageName, dataConfirm.packageIdNumber, dataConfirm.packageCost, dataConfirm.packageImage)
-                                setModalSuccess(true)
                             }}>Confirmar</Button>
                       </Container>
                   </Modal.Body>
