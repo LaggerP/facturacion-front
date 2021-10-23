@@ -1,8 +1,8 @@
-import React, {useState, useContext, useEffect, Component} from "react";
+import React, {useState, useContext, useEffect} from "react";
 
 import './Packages.scss';
 
-import {Container, Col, Row, Button, Card, Modal, Carousel, CarouselItem} from "react-bootstrap";
+import {Container, Col, Row, Button, Card, Modal, Spinner} from "react-bootstrap";
 
 import {HandThumbsUp} from 'react-bootstrap-icons';
 
@@ -26,6 +26,7 @@ function Packages() {
     const [dataModal, setDataModal] = useState();
     const [dataConfirm, setDataConfirm] = useState();
     const [paquetes, setPaquetes] = useState();
+    const [isLoading, setIsLoading] = useState(true);
 
     const packagesHired = [];
 
@@ -38,6 +39,7 @@ function Packages() {
             }
         });
         let response = await request.json();
+        setIsLoading(false);
         setPaquetes(response.data);
     }
 
@@ -64,8 +66,6 @@ function Packages() {
             })
         });
         let response = await request.json();
-        console.log(response.status)
-        console.log(request.status)
         if (response.status == 201) {
             setModalSuccess(true)
         } else{
@@ -115,6 +115,14 @@ function Packages() {
     if (paquetes) {
         return (
           <div className="packages">
+          {isLoading ?
+            (
+              <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            )
+            : 
+            (
               <Container>
                   <Row>
                       <p className='packagesTitle'>Paquetes</p>
@@ -131,7 +139,7 @@ function Packages() {
                                             <Card.Img variant='top' className='cardImages'
                                                       src={sub.imagen == '' || 'null' ? 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png' : sub.imagen}/>
                                             <Card.Body>
-                                                <Card.Title className="cardTitle">Pack {sub.nombre}</Card.Title>
+                                                <Card.Title className="cardTitle">{sub.nombre}</Card.Title>
                                                 <Card.Text className="cardText">${sub.precio} /mes</Card.Text>
                                                 {
                                                     userData.packages.map( function(pack) {
@@ -144,7 +152,7 @@ function Packages() {
                                                 }
                                                 {
                                                     packagesHired.some(item => item === sub.id_paquete)? 
-                                                    <Button type="primary" bsPrefix="buttonPackagesTransparent" disabled>Contratar</Button>
+                                                    <Button type="primary" bsPrefix="buttonPackagesHired" disabled>Contratado</Button>
                                                     : 
                                                     <Button type="primary" bsPrefix="buttonPackages" onClick={() => {
                                                         setModalConfirmShow(true);
@@ -169,6 +177,8 @@ function Packages() {
                       <p className='bottomText'>Adquirí tus suscripciones, con estos precios exclusivos</p>
                   </Row>
               </Container>
+              )
+            }
 
               <InfoModal
                 data={dataModal}
@@ -221,7 +231,20 @@ function Packages() {
           </div>
         )
     } else {
-        return <><h1>Sin paquetes</h1></>
+        return(
+            <div>
+                {isLoading ? (
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                    ) 
+                    : 
+                    (
+                        <h1>Sin Paquetes</h1>
+                    )
+                }
+            </div>
+        )
     }
 
 }
