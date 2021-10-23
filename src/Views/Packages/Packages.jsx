@@ -13,7 +13,7 @@ import SuccessModal from "./Modal/SuccessModal";
 import FailureModal from "./Modal/FailureModal";
 
 import {UserContext} from "../../context/UserContext";
-import { apiUrl } from "../../Helper";
+import {apiUrl} from "../../Helper";
 
 function Packages() {
 
@@ -52,23 +52,22 @@ function Packages() {
                 'Authorization': 'Bearer ' + userData.token
             },
             body: JSON.stringify({
-                userId:userData.userData.id, 
-                userObjectId: '507f1f77bcf86cd99',
-                email:userData.userData.email,
-                name:packageName, 
-                subscriptionId:userData.packages[0].subscriptionId,
-                packageId:packageIdNumber,
-                cost:packageCost, 
-                firstName:userData.userData.firstName,
-                lastName:userData.userData.lastName,
-                telephone:userData.userData.phoneNumber,
-                uriImg: packageImage|| 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png',
+                userId: userData.userData.id,
+                userObjectId: userData.userData.objId,
+                email: userData.userData.email,
+                name: packageName,
+                subscriptionId: userData.packages[0].subscriptionId,
+                packageId: packageIdNumber,
+                cost: packageCost,
+                firstName: userData.userData.firstName,
+                lastName: userData.userData.lastName,
+                telephone: userData.userData.phoneNumber,
+                uriImg: packageImage || 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png',
             })
         });
-        let response = await request.json();
-        if (response.status == 201) {
+        if (request.status === 201) {
             setModalSuccess(true)
-        } else{
+        } else {
             setModalFailure(true)
         }
     }
@@ -86,99 +85,110 @@ function Packages() {
         adaptiveHeight: true,
         responsive: [
             {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
-              }
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
             },
             {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                initialSlide: 2
-              }
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
             },
             {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
             }
-          ]
-      };
+        ]
+    };
 
     if (paquetes) {
         return (
           <div className="packages">
-          {isLoading ?
-            (
-              <Spinner animation="border" role="status">
-                  <span className="visually-hidden">Loading...</span>
-              </Spinner>
-            )
-            : 
-            (
-              <Container>
-                  <Row>
-                      <p className='packagesTitle'>Paquetes</p>
-                  </Row>
-                  <Row>
-                    <Slider {...settings}>
-                      {
-                          paquetes.map((sub, key) => {
-                              if (sub.estado.toLowerCase() === "activo") {          
-                                  return (
-                                  
-                                    <Col key={key} style={{paddingTop: 30}}>
-                                        <Card bsPrefix="packageCard">
-                                            <Card.Img variant='top' className='cardImages'
-                                                      src={sub.imagen == '' || 'null' ? 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png' : sub.imagen}/>
-                                            <Card.Body>
-                                                <Card.Title className="cardTitle">{sub.nombre}</Card.Title>
-                                                <Card.Text className="cardText">${sub.precio} /mes</Card.Text>
-                                                {
-                                                    userData.packages.map( function(pack) {
-                                                        if (pack.packageId == sub.id_paquete){
-                                                            if (pack.subscribed == true) {
-                                                                packagesHired.push(sub.id_paquete)
-                                                            }
-                                                        } 
-                                                    })
-                                                }
-                                                {
-                                                    packagesHired.some(item => item === sub.id_paquete)? 
-                                                    <Button type="primary" bsPrefix="buttonPackagesHired" disabled>Contratado</Button>
-                                                    : 
-                                                    <Button type="primary" bsPrefix="buttonPackages" onClick={() => {
-                                                        setModalConfirmShow(true);
-                                                        setDataConfirm({packageName:sub.nombre, packageIdNumber:sub.id_paquete, packageCost:sub.precio, packageImage:sub.imagen})
-                                                    }}>Contratar</Button>
-                                                }
-                                            </Card.Body>
-                                            <Card.Footer bsPrefix="cardFooter" onClick={() => {
-                                                setModalInfoShow(true);
-                                                setDataModal({name:sub.nombre, description:sub.descripcion, price:sub.precio});
-                                            }}>Ver más</Card.Footer>
-                                        </Card>
-                                    </Col>
-                               
-                                  )
+              {isLoading ?
+                (
+                  <Spinner animation="border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                )
+                :
+                (
+                  <Container>
+                      <Row>
+                          <p className='packagesTitle'>Paquetes</p>
+                      </Row>
+                      <Row>
+                          <Slider {...settings}>
+                              {
+                                  paquetes.map((sub, key) => {
+                                      if (sub.estado.toLowerCase() === "activo") {
+                                          return (
+
+                                            <Col key={key} style={{paddingTop: 30}}>
+                                                <Card bsPrefix="packageCard">
+                                                    <Card.Img variant='top' className='cardImages'
+                                                              src={sub.imagen == '' || 'null' ? 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png' : sub.imagen}/>
+                                                    <Card.Body>
+                                                        <Card.Title className="cardTitle">{sub.nombre}</Card.Title>
+                                                        <Card.Text className="cardText">${sub.precio} /mes</Card.Text>
+                                                        {
+                                                            userData.packages.map(function (pack) {
+                                                                if (pack.packageId === sub.id_paquete) {
+                                                                    if (pack.subscribed === true) {
+                                                                        packagesHired.push(sub.id_paquete)
+                                                                    }
+                                                                }
+                                                            })
+                                                        }
+                                                        {
+                                                            packagesHired.some(item => item === sub.id_paquete) ?
+                                                              <Button type="primary" bsPrefix="buttonPackagesHired"
+                                                                      disabled>Contratado</Button>
+                                                              :
+                                                              <Button type="primary" bsPrefix="buttonPackages"
+                                                                      onClick={() => {
+                                                                          setModalConfirmShow(true);
+                                                                          setDataConfirm({
+                                                                              packageName: sub.nombre,
+                                                                              packageIdNumber: sub.id_paquete,
+                                                                              packageCost: sub.precio,
+                                                                              packageImage: sub.imagen
+                                                                          })
+                                                                      }}>Contratar</Button>
+                                                        }
+                                                    </Card.Body>
+                                                    <Card.Footer bsPrefix="cardFooter" onClick={() => {
+                                                        setModalInfoShow(true);
+                                                        setDataModal({
+                                                            name: sub.nombre,
+                                                            description: sub.descripcion,
+                                                            price: sub.precio
+                                                        });
+                                                    }}>Ver más</Card.Footer>
+                                                </Card>
+                                            </Col>
+
+                                          )
+                                      }
+                                  })
                               }
-                          })
-                      }
-                      </Slider>
-                  </Row>
-                  <Row>
-                      <p className='bottomText'>Adquirí tus suscripciones, con estos precios exclusivos</p>
-                  </Row>
-              </Container>
-              )
-            }
+                          </Slider>
+                      </Row>
+                      <Row>
+                          <p className='bottomText'>Adquirí tus suscripciones, con estos precios exclusivos</p>
+                      </Row>
+                  </Container>
+                )
+              }
 
               <InfoModal
                 data={dataModal}
@@ -213,7 +223,6 @@ function Packages() {
                             onClick={() => {
                                 setModalConfirmShow(false);
                                 hirePackage(dataConfirm.packageName, dataConfirm.packageIdNumber, dataConfirm.packageCost, dataConfirm.packageImage)
-                                setModalSuccess(true)
                             }}>Confirmar</Button>
                       </Container>
                   </Modal.Body>
@@ -231,19 +240,19 @@ function Packages() {
           </div>
         )
     } else {
-        return(
-            <div>
-                {isLoading ? (
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                    ) 
-                    : 
-                    (
-                        <h1>Sin Paquetes</h1>
-                    )
-                }
-            </div>
+        return (
+          <div>
+              {isLoading ? (
+                  <Spinner animation="border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                )
+                :
+                (
+                  <h1>Sin Paquetes</h1>
+                )
+              }
+          </div>
         )
     }
 
