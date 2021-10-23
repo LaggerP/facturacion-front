@@ -4,6 +4,8 @@ import './Account.scss';
 
 import {Container, Col, Row} from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
+import Cards from 'react-credit-cards';
+import 'react-credit-cards/es/styles-compiled.css';
 
 function Account() {
 
@@ -19,7 +21,7 @@ function Account() {
                             <p className="accountTitle" >Cuenta</p>
                         </Col>
                         <Col sm={12} md={4} xl={6}>
-                            <p className="membershipTitle" >MIEMBRO DESDE MARZO 2018</p>
+                            <p className="membershipTitle" >MIEMBRO DESDE <b>{userData.userData.createdAt.substring(0,10)}</b></p>
                         </Col>
                     </Row>
 
@@ -53,17 +55,13 @@ function Account() {
                                     <p  className="text" ><b>Método de pago: </b></p>
                                 </Col>
 
-                                <Col sm={12} md={8}lg={8}>
-                                <p className="text" >
-                                    <img
-                                        alt="tarjeta"
-                                        src={"https://logos-world.net/wp-content/uploads/2020/09/Mastercard-Symbol.jpg"}
-                                        width="100"
-                                        height="50"
-                                        style={{borderRadius:5, marginTop:10, justifyContent:'flex-start'}}
+                                <Col sm={8} md={4} lg={4} className="card">
+                                    <Cards
+                                        cvc="123"
+                                        expiry="14/2021"
+                                        name={userData.userData.firstName +" "+ userData.userData.lastName}
+                                        number="5200*** *** **1234"
                                     />
-                                    **** **** **** 1234
-                                    </p>
                                 </Col>
                             </Row>
                         </Container>
