@@ -4,6 +4,7 @@ import {Container, Col, Row, Button, Spinner} from "react-bootstrap";
 import {useEffect, useCallback} from "react";
 import {apiUrl} from "../../Helper";
 import {UserContext} from "../../context/UserContext";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function Invoicing() {
     const [invoices, setInvoices] = React.useState(null);
@@ -102,14 +103,17 @@ function Invoicing() {
                       <p className="previousInvoices">Facturas anteriores</p>
                   </Row>
                   <Col sm={6} className="searchBar">
-                      <input
-                        className="form-control"
-                        type="text"
-                        placeholder="Ingrese aquí el número de factura a buscar"
-                        onChange={(event) => {
-                            setSearchTerm(event.target.value);
-                        }}
-                      />
+                    <div class="input-group">
+                        <button type="button" class="btn btn-secondary">
+                                <i class="bi-search"></i>
+                        </button>
+                        <input  className="form-control"
+                                type="text"
+                                placeholder="Ingrese aquí el número de factura a buscar"
+                                onChange={(event) => {
+                                    setSearchTerm(event.target.value);
+                                }}/>
+                    </div>
                   </Col>
                   <Row>
                       {
