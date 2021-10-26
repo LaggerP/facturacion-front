@@ -1,11 +1,12 @@
 import React, {useContext, useState} from "react";
 import './Subscriptions.scss';
-import {Container, Col, Row, Button, Spinner, Modal} from "react-bootstrap";
+import {Container, Col, Row, Button, Spinner, Modal, ModalTitle, ModalBody, ModalFooter} from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import {useEffect, useCallback} from "react";
 import {apiUrl} from "../../Helper";
 import {UserContext} from "../../context/UserContext";
 import SuccessModal from "./Modals/SuccessModal";
+import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
 function Subscriptions() {
     const [subscriptions, setSubscriptions] = React.useState(null);
@@ -105,10 +106,6 @@ function Subscriptions() {
                               <Col sm={12} md={6} lg={6}>
                                   <p className="packageName">Tu próxima fecha de facturación es el 30/09/2021</p>
                               </Col>
-                              <Col sm={12} md={6} lg={6} style={{display: "flex", justifyContent: "flex-end"}}>
-                                  <Button type="primary" bsPrefix="cancel btnTextColor">Cambiar día de
-                                      facturación</Button>
-                              </Col>
                           </Row>
                       </Container>
                   </Row>
@@ -127,7 +124,7 @@ function Subscriptions() {
             aria-labelledby="contained-modal-title-vcenter"
             centered>
 
-              <Modal.Body style={{border: "2px solid #C78C36",  borderRadius: '2px'}}>
+              <Modal.Body style={{border: "2px solid #C78C36"}}>
                   <p style={{textAlign: 'center', fontSize: 20, color: '#C78C36', marginBottom:'30px'}}>CANCELAR SUSCRIPCIÓN</p>
                   <p style={{fontSize: 18, textAlign: 'left', marginRight: '15px', marginLeft: '15px'}}>Se procederá a
                       realizar la cancelación del paquete <b>{subs.name}</b>.</p>
@@ -143,15 +140,16 @@ function Subscriptions() {
                                   cambiarEstadoSuscripcion(subs.userId, subs.subscriptionId, subs.packageId);
                                   setModalCancelSubscriptions(false);
                                   setModalSuccess(true);
-                                  fetchMyAPI();
                               }}>Aceptar</Button>
                   </Container>
               </Modal.Body>
           </Modal>
-
           <SuccessModal
             show={modalSuccess}
-            onHide={() => setModalSuccess(false)}
+            onHide={() => {
+                setModalSuccess(false);
+                fetchMyAPI();
+            }}
           />
       </div>
     );
