@@ -13,6 +13,7 @@ import {UserContext} from "../../context/UserContext";
 import {token, client, apiUrl} from "../../Helper";
 
 function Dashboard() {
+    let cantSuscriptions = 0;
     const [isLoading, setIsLoading] = useState(false);
     const {userData, userLogged, setUserData, setUserLogged} = useContext(UserContext);
 
@@ -141,28 +142,36 @@ function Dashboard() {
                       <Col sm={12} md={5} xl={5} style={{paddingBottom: 50}}>
                           <Container className="containerInside" style={{height: '100%'}}>
                               <Row>
-                                  <p className="text" style={{marginLeft: 16}}>Suscripciones contratadas</p>
+                                  <p className="text" style={{marginLeft: 16}}>Suscripciones activas</p>
                               </Row>
                               <Col xl={{span: 10, offset: 1}} style={{height: '100%'}}>
                                     {
                                         userData.packages.map( function(pack) {
                                             if (pack.subscribed == true) {
-                                                return (
-                                                    <Row className="subscriptionsContainer">
-                                                        <Col xs={3} lg={2}>
-                                                            <img
-                                                                alt={pack.name}
-                                                                src={pack.uriImg}
-                                                                width="50"
-                                                                height="50"
-                                                                style={{borderRadius:5}}
-                                                            />
-                                                        </Col>
-                                                        <Col xs={9} lg={10}> 
-                                                            <p className="subtext" style={{paddingTop:15}}>{pack.name}</p>
-                                                        </Col>
-                                                    </Row>
-                                                )
+                                                cantSuscriptions++;
+                                                if(cantSuscriptions < 4){
+                                                    return (
+                                                        <Row className="subscriptionsContainer">
+                                                            <Col xs={3} lg={2}>
+                                                                <img
+                                                                    alt={pack.name}
+                                                                    src={pack.uriImg}
+                                                                    width="50"
+                                                                    height="50"
+                                                                    style={{borderRadius:5}}
+                                                                />
+                                                            </Col>
+                                                            <Col xs={9} lg={10}> 
+                                                                <p className="subtext" style={{paddingTop:15}}>{pack.name}</p>
+                                                            </Col>
+                                                        </Row>
+                                                    )
+                                                }else if(cantSuscriptions == userData.packages.length){
+                                                    return (
+                                                        <p>+ {userData.packages.length - 3} {(userData.packages.length - 3) == 1 ? "suscripción activa" : "suscripciones activas"}</p>
+                                                    )
+                                                }
+                                                
                                             }
                                         })
                                     }
