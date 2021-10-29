@@ -50,11 +50,21 @@ function Subscriptions() {
 
     return (
       <div className="subscriptions">
+          <nav aria-label="breadcrumb">
+          <Container className="pt-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Suscripciones</li>
+            </ol>
+            </Container>    
+        </nav>
           {isLoading ?
             (
-              <Spinner animation="border" role="status">
-                  <span className="visually-hidden">Loading...</span>
-              </Spinner>
+              <div style={{marginTop: 250}} >
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
             )
             : (
               <Container>

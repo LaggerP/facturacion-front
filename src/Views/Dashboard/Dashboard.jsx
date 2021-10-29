@@ -61,6 +61,13 @@ function Dashboard() {
     if (userData && userLogged) {
         return (
           <div className="dashboard">
+                <nav aria-label="breadcrumb">
+                <Container className="pt-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    </ol>
+                    </Container>
+                </nav>
               <Container>
                   <p className="welcomeTitle">¡Hola, <b
                     style={{color: "#C78C36"}}>{userData.userData.firstName} {userData.userData.lastName}</b>! Es bueno
@@ -92,6 +99,7 @@ function Dashboard() {
                                                 />Descargando </>): (<><Download style={{marginRight: "10px"}}/>Descargar</>)}
                                           </Button>
                                       </Col>
+                    
                                       <Col xl={4}>
                                           <Link to="/invoices">
                                               <Button type="primary" bsPrefix="buttonInvoice">+ Ver Facturas</Button>

@@ -9,10 +9,10 @@ function navbar() {
         <Navbar bg="dark" variant="dark">
             <Container>
                 <Link to="/">
-                    <Navbar.Brand >
-                        <p className="notflix">NotFlix</p>
+                    <Navbar.Brand className="mb-0">
+                        <p className="notflix mb-0">NotFlix</p>
                     </Navbar.Brand>
-                    <Navbar.Toggle/>    
+                    <Navbar.Toggle/>
                 </Link>
 
                 <Link to="/account">

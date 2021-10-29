@@ -51,9 +51,21 @@ function Invoicing() {
 
     return (
       <div className="invoicing">
-          {isLoading ? (<Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>)
+            <nav aria-label="breadcrumb">
+            <Container className="pt-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Facturas</li>
+            </ol>   
+            </Container>
+        </nav>
+          {isLoading ? 
+          (
+           <div style={{marginTop: 250}} >
+          <Spinner class="border d-flex align-items-center justify-content-center" animation="border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </Spinner>
+            </div>)
             : (
               <Container className="containerInvoicing">
                   <Row>
