@@ -141,12 +141,13 @@ function Packages() {
                               {
                                   paquetes.map((sub, key) => {
                                       if (sub.estado.toLowerCase() === "activo") {
+                                          const imageCondition = sub.imagen == '' || 'null'
                                           return (
 
                                             <Col key={key} style={{paddingTop: 30}}>
                                                 <Card bsPrefix="packageCard">
                                                     <Card.Img variant='top' className='cardImages'
-                                                              src={sub.imagen == '' || 'null' ? 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png' : sub.imagen}/>
+                                                              src={imageCondition ? 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png' : sub.imagen}/>
                                                     <Card.Body>
                                                         <Card.Title className="cardTitle">{sub.nombre}</Card.Title>
                                                         <Card.Text className="cardText">${sub.precio} /mes</Card.Text>
