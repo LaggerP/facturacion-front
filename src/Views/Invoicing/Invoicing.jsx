@@ -55,7 +55,7 @@ function Invoicing() {
             <Container className="pt-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Facturas</li>
+                <li class="breadcrumb-item active" style={{color: "#C78C36"}}   aria-current="page">Facturas</li>
             </ol>   
             </Container>
         </nav>

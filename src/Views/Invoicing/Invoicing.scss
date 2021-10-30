@@ -62,6 +62,10 @@
 .breadcrumb {
     color: #ffffff;
     padding: 10px 15px !important;
-    background-color: #ece9e1;
-
+    background-color: #ffffff;
 }
+
+.breadcrumb >.active {
+    color: #C78C36;
+ }
+ 

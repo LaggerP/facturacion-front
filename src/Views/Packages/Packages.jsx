@@ -119,7 +119,7 @@ function Packages() {
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
                         <li class="breadcrumb-item"><a href="javascript:history.back()">Suscripciones</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Paquetes</li>
+                        <li class="breadcrumb-item active" style={{color: "#C78C36"}} aria-current="page">Paquetes</li>
                     </ol>
                  </Container> 
         </nav>

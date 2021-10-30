@@ -64,7 +64,7 @@ function Dashboard() {
                 <nav aria-label="breadcrumb">
                 <Container className="pt-4">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item" style={{color: "#C78C36"}} ><a href="#">Home</a></li>
                     </ol>
                     </Container>
                 </nav>
