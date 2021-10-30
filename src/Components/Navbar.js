@@ -3,6 +3,7 @@ import React from "react";
 import { Navbar, Container} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import Logo from "../Assets/logoNotflix.png"
 function navbar() {
 
     return (
@@ -10,7 +11,13 @@ function navbar() {
             <Container>
                 <Link to="/">
                     <Navbar.Brand className="mb-0">
-                        <p className="notflix mb-0">NotFlix</p>
+                        <a class="navbar-brand" href="#">
+                            <img
+                                    alt=""
+                                    src={Logo}
+                                    Link Button 
+                                /> 
+                        </a>
                     </Navbar.Brand>
                     <Navbar.Toggle/>
                 </Link>
