@@ -156,6 +156,7 @@ function Dashboard() {
                                     {
                                         userData.packages.map( function(pack) {
                                             if (pack.subscribed == true) {
+                                                const imageCondition = (pack.uriImg == '' || pack.uriImg == 'null' || pack.uriImg == null || pack.uriImg == 'link' || pack.uriImg == 'url')
                                                 cantSuscriptions++;
                                                 if(cantSuscriptions < 4){
                                                     return (
@@ -163,7 +164,7 @@ function Dashboard() {
                                                             <Col xs={3} lg={2}>
                                                                 <img
                                                                     alt={pack.name}
-                                                                    src={pack.uriImg}
+                                                                    src={imageCondition ? 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png' : pack.uriImg}
                                                                     width="50"
                                                                     height="50"
                                                                     style={{borderRadius:5}}

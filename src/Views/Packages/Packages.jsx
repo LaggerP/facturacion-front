@@ -141,9 +141,9 @@ function Packages() {
                               {
                                   paquetes.map((sub, key) => {
                                       if (sub.estado.toLowerCase() === "activo") {
-                                          const imageCondition = sub.imagen == '' || 'null'
+                                        const imageCondition = (sub.imagen == '' || sub.imagen == 'null' || sub.imagen == null || sub.imagen == 'link' || sub.imagen == 'url')
+                                        console.log(sub)
                                           return (
-
                                             <Col key={key} style={{paddingTop: 30}}>
                                                 <Card bsPrefix="packageCard">
                                                     <Card.Img variant='top' className='cardImages'
@@ -241,7 +241,10 @@ function Packages() {
 
               <SuccessModal
                 show={modalSuccess}
-                onHide={() => setModalSuccess(false)}
+                onHide={() => {
+                    setModalSuccess(false)
+                    getPaquetes()
+                }}
               />
 
               <FailureModal
