@@ -63,6 +63,13 @@ function Dashboard() {
     if (userData && userLogged) {
         return (
           <div className="dashboard">
+                <nav aria-label="breadcrumb">
+                <Container className="pt-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item" style={{color: "#C78C36"}} ><a href="#">Home</a></li>
+                    </ol>
+                    </Container>
+                </nav>
               <Container>
                   <p className="welcomeTitle">¡Hola, <b
                     style={{color: "#C78C36"}}>{userData.userData.firstName} {userData.userData.lastName}</b>! Es bueno
@@ -103,6 +110,7 @@ function Dashboard() {
                                             </Button>
                                           </OverlayTrigger>
                                       </Col>
+
                                       <Col>
                                           <Link to="/invoices">
                                                 <OverlayTrigger
