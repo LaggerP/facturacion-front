@@ -13,7 +13,7 @@ import SuccessModal from "./Modal/SuccessModal";
 import FailureModal from "./Modal/FailureModal";
 
 import {UserContext} from "../../context/UserContext";
-import {apiUrl} from "../../Helper";
+import {apiUrl, subsKey} from "../../Helper";
 
 function Packages() {
 
@@ -35,7 +35,8 @@ function Packages() {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-Auth-Key': subsKey
             }
         });
         let response = await request.json();
