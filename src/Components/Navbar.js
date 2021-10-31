@@ -3,16 +3,23 @@ import React from "react";
 import { Navbar, Container} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import Logo from "../Assets/logoNotflix.png"
 function navbar() {
 
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
                 <Link to="/">
-                    <Navbar.Brand >
-                        <p className="notflix">NotFlix</p>
+                    <Navbar.Brand className="mb-0">
+                        <a class="navbar-brand" href="#">
+                            <img
+                                    alt=""
+                                    src={Logo}
+                                    Link Button 
+                                /> 
+                        </a>
                     </Navbar.Brand>
-                    <Navbar.Toggle/>    
+                    <Navbar.Toggle/>
                 </Link>
 
                 <Link to="/account">

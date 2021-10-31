@@ -19,12 +19,14 @@
     background: rgba(200, 141, 60, 0.31);
     border-radius: 10px ;
     border: 0px solid rgba(200, 141, 60, 0.31);
+    margin:10px;
 }
 
 .cardImages{
-    height: 25vh;
     object-fit: cover;
     border-radius: 10px;
+    max-height: 200px;
+    min-height: 200px;
 }
 
 .cardTitle{
@@ -50,6 +52,19 @@
     max-width: 100%;
 }
 
+.buttonPackagesHired{
+    background-color:#8CCF4D;
+    border-color: #8CCF4D;
+    border-radius: 5px;
+    color: white;
+    border: 1px;
+    padding: 0.5rem;
+    font-size: 20px;
+    font-weight: bold;
+    width: 200px;
+    max-width: 100%;
+}
+
 .cardFooter {
     padding: .5rem 1rem;
     background: rgba(200, 141, 60, 0.31) ;
@@ -61,4 +76,9 @@
 .bottomText{
     font-size: 25px;
     padding-top: 50px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
 }

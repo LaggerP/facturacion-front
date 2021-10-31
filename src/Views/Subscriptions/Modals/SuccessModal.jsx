@@ -10,7 +10,8 @@ const SuccessModal = (props) => {
         {...props}
         size="sm"
         aria-labelledby="contained-modal-title-vcenter"
-        centered>
+        centered
+      >
           <Modal.Header closeButton style={{background: '#8CCF4D', border: '5px solid #8CCF4D'}}/>
           <Modal.Body>
               <p style={{textAlign: 'center'}}>
@@ -23,10 +24,8 @@ const SuccessModal = (props) => {
                       color: '#8CCF4D'
                   }}/>
               </p>
-              <p style={{color: '#8CCF4D', fontWeight: 'bold', fontSize: 25, textAlign: 'center'}}>¡FELICITACIONES!</p>
-              <p style={{textAlign: 'center', fontSize: 18}}>¡El paquete fue contratado con éxito!</p>
-              <p style={{textAlign: 'center', fontSize: 18}}>Encontraras los detalles de la operación en la sección de
-                  Suscripciones</p>
+              <p style={{textAlign: 'center', fontSize: 18}}>¡La operación salio de forma exitosa!</p>
+              <p style={{textAlign: 'center', fontSize: 18}}>Se dio de baja correctamente del paquete.</p>
           </Modal.Body>
       </Modal>
     );

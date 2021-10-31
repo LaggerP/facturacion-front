@@ -9,6 +9,7 @@ html, body {
 
 .notflix{
   font-size: 30px;
+  margin-top: 20px;
   text-decoration: underline;
   text-decoration-color: #C78C36;
   text-decoration-thickness: 3px;
@@ -21,7 +22,7 @@ html, body {
 }
 
 .text{
-  font-size: 25px;
+  font-size: 25px !important;
   text-align: left;
 }
 
@@ -83,4 +84,9 @@ html, body {
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.card{
+  background: transparent !important;
+  border: none !important;
 }
