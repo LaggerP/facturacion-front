@@ -57,7 +57,7 @@ function Packages() {
                 userObjectId: userData.userData.objId,
                 email: userData.userData.email,
                 name: packageName,
-                subscriptionId: userData.packages[0].subscriptionId,
+                subscriptionId: userData.userData.subscriptionId,
                 packageId: packageIdNumber,
                 cost: packageCost,
                 firstName: userData.userData.firstName,
@@ -122,7 +122,7 @@ function Packages() {
                         <li class="breadcrumb-item"><a href="javascript:history.back()">Suscripciones</a></li>
                         <li class="breadcrumb-item active" style={{color: "#C78C36"}} aria-current="page">Paquetes</li>
                     </ol>
-                 </Container> 
+                 </Container>
         </nav>
               {isLoading ?
                 (

@@ -172,7 +172,7 @@ function Dashboard() {
                                                                     style={{borderRadius:5}}
                                                                 />
                                                             </Col>
-                                                            <Col xs={9} lg={10}> 
+                                                            <Col xs={9} lg={10}>
                                                                 <p className="subtext" style={{paddingTop:15}}>{pack.name}</p>
                                                             </Col>
                                                         </Row>
@@ -182,7 +182,7 @@ function Dashboard() {
                                                         <p>+ {userData.packages.length - 3} {(userData.packages.length - 3) == 1 ? "suscripción activa" : "suscripciones activas"}</p>
                                                     )
                                                 }
-                                                
+
                                             }
                                         })
                                     }
