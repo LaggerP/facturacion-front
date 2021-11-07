@@ -37,23 +37,25 @@ function Dashboard() {
     }
 
     const downloadLastInvoice = async () => {
-        setIsLoading(true);
-        let invoice = await fetch(`${apiUrl}/invoices/pdf/${userData.lastInvoice.userId}/${userData.lastInvoice.id}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + userData.token
-            }
-        });
-        invoice = await invoice.json();
-        const linkSource = `data:application/pdf;base64,${invoice}`;
-        const downloadLink = document.createElement("a");
-        const fileName = `Factura - #${userData.lastInvoice.invoiceNumber}.pdf`;
-        downloadLink.href = linkSource;
-        downloadLink.download = fileName;
-        downloadLink.click();
-        setIsLoading(false);
+        if(userData.lastInvoice !== null){
+            setIsLoading(true);
+            let invoice = await fetch(`${apiUrl}/invoices/pdf/${userData.lastInvoice.userId}/${userData.lastInvoice.id}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + userData.token
+                }
+            });
+            invoice = await invoice.json();
+            const linkSource = `data:application/pdf;base64,${invoice}`;
+            const downloadLink = document.createElement("a");
+            const fileName = `Factura - #${userData.lastInvoice.invoiceNumber}.pdf`;
+            downloadLink.href = linkSource;
+            downloadLink.download = fileName;
+            downloadLink.click();
+            setIsLoading(false);
+        }
     }
 
     useEffect(async () => {
@@ -90,7 +92,7 @@ function Dashboard() {
                                         placement="top"
                                         overlay={
                                             <Tooltip id={`tooltip-$top`}>
-                                                Descargar la última factura
+                                            {userData.lastInvoice !== null ? "Descargar la última factura" : "No hay facturas disponibles"}
                                             </Tooltip>
                                         }
                                         >
