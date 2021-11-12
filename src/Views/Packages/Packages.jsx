@@ -256,18 +256,32 @@ function Packages() {
         )
     } else {
         return (
-          <div>
+            <div className="packages">
               {isLoading ? (
-                  <Spinner animation="border" role="status">
-                      <span className="visually-hidden">Loading...</span>
-                  </Spinner>
+                <div style={{marginTop: 250}} >
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </div>
                 )
                 :
                 (
-                  <h1>Sin Paquetes</h1>
+                <div>
+                    <nav aria-label="breadcrumb">
+                        <Container className="pt-4">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:history.back()">Suscripciones</a></li>
+                                <li class="breadcrumb-item active" style={{color: "#C78C36"}} aria-current="page">Paquetes</li>
+                            </ol>
+                        </Container>
+                    </nav>
+                    <h1 style={{marginTop: 250}}>No se encontraron paquetes.</h1>
+                    <h1>Intente nuevamente o contactenos.</h1>
+                </div>
                 )
               }
-          </div>
+            </div>
         )
     }
 
