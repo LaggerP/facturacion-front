@@ -3,23 +3,23 @@ import './Invoicing.scss';
 import {Container, Col, Row, Button, Spinner} from "react-bootstrap";
 import {useEffect, useCallback} from "react";
 import {apiUrl} from "../../Helper";
-import {UserContext} from "../../context/UserContext";
+import { useCookies } from 'react-cookie';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function Invoicing() {
     const [invoices, setInvoices] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(true);
-    const [searchTerm, setSearchTerm] = React.useState('')
-
-    const {userData} = useContext(UserContext);
+    const [searchTerm, setSearchTerm] = React.useState('');
+    const [cookies] = useCookies(['cookie-name']);
 
     const fetchMyAPI = useCallback(async () => { //function to get the invoices that have the user
-        let response = await fetch(`${apiUrl}/invoices/${userData.userData.id}`, {
+
+        let response = await fetch(`${apiUrl}/invoices/${cookies.user.userData.id}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + userData.token
+                'Authorization': 'Bearer ' + cookies.user.token
             }
         });
         response = await response.json()
@@ -33,7 +33,7 @@ function Invoicing() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + userData.token
+                'Authorization': 'Bearer ' + cookies.user.token
             }
         });
         invoice = await invoice.json();
@@ -53,13 +53,13 @@ function Invoicing() {
       <div className="invoicing">
             <nav aria-label="breadcrumb">
             <Container className="pt-4">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
-                <li class="breadcrumb-item active" style={{color: "#C78C36"}}   aria-current="page">Facturas</li>
-            </ol>   
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
+                    <li class="breadcrumb-item active" style={{color: "#C78C36"}}   aria-current="page">Facturas</li>
+                </ol>
             </Container>
         </nav>
-          {isLoading ? 
+          {isLoading ?
           (
            <div style={{marginTop: 250}} >
           <Spinner class="border d-flex align-items-center justify-content-center" animation="border" role="status">
@@ -117,7 +117,7 @@ function Invoicing() {
                   <Col sm={6} className="searchBar">
                     <div class="input-group">
                         <button type="button" class="btn btn-secondary">
-                                <i class="bi-search"></i>
+                            <i class="bi-search"></i>
                         </button>
                         <input  className="form-control"
                                 type="text"

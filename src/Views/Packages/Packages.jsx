@@ -1,23 +1,15 @@
-import React, {useState, useContext, useEffect} from "react";
-
+import React, {useState, useEffect} from "react";
 import './Packages.scss';
-
 import {Container, Col, Row, Button, Card, Modal, Spinner} from "react-bootstrap";
-
 import {HandThumbsUp} from 'react-bootstrap-icons';
-
 import Slider from "react-slick";
-
 import InfoModal from "./Modal/InfoModal";
 import SuccessModal from "./Modal/SuccessModal";
 import FailureModal from "./Modal/FailureModal";
-
-import {UserContext} from "../../context/UserContext";
+import {useCookies} from "react-cookie";
 import {apiUrl, subsKey} from "../../Helper";
 
 function Packages() {
-
-    const {userData} = useContext(UserContext);
 
     const [modalInfoShow, setModalInfoShow] = useState(false);
     const [ModalConfirmShow, setModalConfirmShow] = useState(false);
@@ -27,6 +19,7 @@ function Packages() {
     const [dataConfirm, setDataConfirm] = useState();
     const [paquetes, setPaquetes] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [cookies] = useCookies(['cookie-name']);
 
     const packagesHired = [];
 
@@ -50,20 +43,17 @@ function Packages() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + userData.token
+                'Authorization': 'Bearer ' + cookies.user.token
             },
             body: JSON.stringify({
-                userId: userData.userData.id,
-                userObjectId: userData.userData.objId,
-                email: userData.userData.email,
+                userId: cookies.user.userData.id,
                 name: packageName,
-                subscriptionId: userData.userData.subscriptionId,
+                subscriptionId: cookies.user.userData.subscriptionId,
                 packageId: packageIdNumber,
                 cost: packageCost,
-                firstName: userData.userData.firstName,
-                lastName: userData.userData.lastName,
-                telephone: userData.userData.phoneNumber,
+                email: cookies.user.userData.email,
                 uriImg: packageImage || 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png',
+
             })
         });
         if (request.status === 201) {
@@ -153,7 +143,7 @@ function Packages() {
                                                         <Card.Title className="cardTitle">{sub.nombre}</Card.Title>
                                                         <Card.Text className="cardText">${sub.precio} /mes</Card.Text>
                                                         {
-                                                            userData.packages.map(function (pack) {
+                                                            cookies.user.packages.map(function (pack) {
                                                                 if (pack.packageId === sub.id_paquete) {
                                                                     if (pack.subscribed === true) {
                                                                         packagesHired.push(sub.id_paquete)
