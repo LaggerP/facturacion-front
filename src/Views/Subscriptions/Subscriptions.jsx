@@ -1,11 +1,11 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import './Subscriptions.scss';
 import {Container, Col, Row, Button, Spinner, Modal, ModalTitle, ModalBody, ModalFooter} from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import {useEffect, useCallback} from "react";
 import {apiUrl} from "../../Helper";
-import {UserContext} from "../../context/UserContext";
 import SuccessModal from "./Modals/SuccessModal";
+import {useCookies} from "react-cookie";
 import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
 function Subscriptions() {
@@ -14,16 +14,15 @@ function Subscriptions() {
     const [modalCancelSubscriptions, setModalCancelSubscriptions] = useState(false);
     const [modalSuccess, setModalSuccess] = useState(false);
     const [subs, setSubs] = useState(false);
-
-    const {userData} = useContext(UserContext);
+    const [cookies] = useCookies(['cookie-name']);
 
     const fetchMyAPI = useCallback(async () => { // function to get the subscription of the user
-        let response = await fetch(`${apiUrl}/subscriptions/${userData.userData.id}`, {
+        let response = await fetch(`${apiUrl}/subscriptions/${cookies.user.userData.id}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + userData.token
+                'Authorization': 'Bearer ' + cookies.user.token
             }
         });
         response = await response.json()
@@ -37,7 +36,7 @@ function Subscriptions() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + userData.token
+                'Authorization': 'Bearer ' + cookies.user.token
             }
         });
         await response.json();
@@ -49,14 +48,14 @@ function Subscriptions() {
 
     return (
       <div className="subscriptions">
-          <nav aria-label="breadcrumb">
-          <Container className="pt-4">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
-                <li class="breadcrumb-item active" style={{color: "#C78C36"}} aria-current="page">Suscripciones</li>
-            </ol>
-            </Container>    
-        </nav>
+            <nav aria-label="breadcrumb">
+                <Container className="pt-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
+                        <li class="breadcrumb-item active" style={{color: "#C78C36"}} aria-current="page">Suscripciones</li>
+                    </ol>
+                </Container>
+            </nav>
           {isLoading ?
             (
               <div style={{marginTop: 250}} >
@@ -84,39 +83,39 @@ function Subscriptions() {
                   <Row>
                       {
 
-                          subscriptions.map((sub, key) => {
-                              if (sub.subscribed === true) {
-                                  return (
-                                    <Container className="package" key={key}>
-                                        <Row>
-                                            <Col sm={12} md={6} lg={6}>
-                                                <p className="packageName">{sub.name}</p>
-                                            </Col>
-                                            <Col sm={12} md={6} lg={6}
-                                                 style={{display: "flex", justifyContent: "flex-end"}}>
-                                                <Button type="primary" bsPrefix="cancel btnTextColor" title={`Cancelar suscripción ${sub.name}`} onClick={() => {
-                                                    setSubs(sub);
-                                                    setModalCancelSubscriptions(true);
-                                                }}> Cancelar Suscripción </Button>
-                                            </Col>
-                                        </Row>
-                                    </Container>
-                                  )
-                              }
-                          })
+                        subscriptions.map((sub, key) => {
+                            if (sub.subscribed === true) {
+                                return (
+                                <Container className="package" key={key}>
+                                    <Row>
+                                        <Col sm={12} md={6} lg={6}>
+                                            <p className="packageName">{sub.name}</p>
+                                        </Col>
+                                        <Col sm={12} md={6} lg={6}
+                                                style={{display: "flex", justifyContent: "flex-end"}}>
+                                            <Button type="primary" bsPrefix="cancel btnTextColor" title={`Cancelar suscripción ${sub.name}`} onClick={() => {
+                                                setSubs(sub);
+                                                setModalCancelSubscriptions(true);
+                                            }}> Cancelar Suscripción </Button>
+                                        </Col>
+                                    </Row>
+                                </Container>
+                                )
+                            }
+                        })
                       }
                   </Row>
                   <Row>
                       <p className="contractedPackages">Facturación</p>
                   </Row>
                   <Row>
-                      <Container className="package">
-                          <Row>
-                              <Col sm={12} md={6} lg={6}>
-                                  <p className="packageName">Tu próxima fecha de facturación es el 30/09/2021</p>
-                              </Col>
-                          </Row>
-                      </Container>
+                        <Container className="package">
+                            <Row>
+                                <Col sm={12} md={6} lg={6}>
+                                    <p className="packageName">Tu próxima fecha de facturación es el 30/09/2021</p>
+                                </Col>
+                            </Row>
+                        </Container>
                   </Row>
                   <Row>
                       <p className="downText">Las cuotas de las suscripciones se facturan al principio de cada período y
