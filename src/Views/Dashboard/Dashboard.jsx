@@ -137,9 +137,9 @@ function Dashboard() {
                                         <Col className="card">
                                                     <Cards
                                                         cvc="123"
-                                                        expiry="14/2021"
+                                                        expiry="08/2024"
                                                         name={userData.userData.firstName +" "+ userData.userData.lastName}
-                                                        number="5200*** *** **1234"
+                                                        number="5200*** *** **7294"
                                                     />
                                                 </Col>
                                   </Col>
