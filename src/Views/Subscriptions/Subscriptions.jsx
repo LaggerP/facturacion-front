@@ -15,6 +15,7 @@ function Subscriptions() {
     const [modalSuccess, setModalSuccess] = useState(false);
     const [subs, setSubs] = useState(false);
     const [cookies] = useCookies(['cookie-name']);
+    const today = new Date();
 
     const fetchMyAPI = useCallback(async () => { // function to get the subscription of the user
         let response = await fetch(`${apiUrl}/subscriptions/${cookies.user.userData.id}`, {
@@ -112,7 +113,7 @@ function Subscriptions() {
                         <Container className="package">
                             <Row>
                                 <Col sm={12} md={6} lg={6}>
-                                    <p className="packageName">Tu próxima fecha de facturación es el 30/09/2021</p>
+                                    <p className="packageName">Tu próxima fecha de facturación es el 30/{today.getMonth()+1}/2021</p>
                                 </Col>
                             </Row>
                         </Container>

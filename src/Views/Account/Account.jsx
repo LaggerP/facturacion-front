@@ -54,9 +54,9 @@ function Account() {
                                 <Col sm={8} md={4} lg={4} className="card">
                                     <Cards
                                         cvc="123"
-                                        expiry="14/2021"
+                                        expiry="08/2024"
                                         name={cookies.user.userData.firstName +" "+ cookies.user.userData.lastName}
-                                        number="5200*** *** **1234"
+                                        number="5200*** *** **7294"
                                     />
                                 </Col>
                             </Row>
