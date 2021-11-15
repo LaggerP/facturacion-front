@@ -83,8 +83,17 @@ function Subscriptions() {
                   </Row>
                   <Row>
                       {
-
-                        subscriptions.map((sub, key) => {
+                        subscriptions.length == 0 || subscriptions == null ?
+                        (
+                            <Container className="package">
+                                <Row>
+                                    <Col sm={12} md={6} lg={6}>
+                                        <p className="packageName">No se encuentra suscripto a ningún paquete.</p>
+                                    </Col>
+                                </Row>
+                            </Container>
+                        ):
+                        (subscriptions.map((sub, key) => {
                             if (sub.subscribed === true) {
                                 return (
                                 <Container className="package" key={key}>
@@ -103,7 +112,7 @@ function Subscriptions() {
                                 </Container>
                                 )
                             }
-                        })
+                        }))
                       }
                   </Row>
                   <Row>
