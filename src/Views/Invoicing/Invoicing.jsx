@@ -53,16 +53,16 @@ function Invoicing() {
     return (
       <div className="invoicing">
             <nav aria-label="breadcrumb">
-            <Container className="pt-4">
-               <ol class="breadcrumb">
-                <li class="breadcrumb-item"> <a href="javascript:history.back()">
-                       <img
-                        alt=""
-                        src={Home}/></a></li>
-                <li class="breadcrumb-item active" style={{color: "#C78C36"}}   aria-current="page">Facturas</li>
-            </ol>
-            </Container>
-        </nav>
+                <Container className="pt-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"> <a href="javascript:history.back()">
+                        <img
+                            alt=""
+                            src={Home}/></a></li>
+                    <li class="breadcrumb-item active" style={{color: "#C78C36"}}   aria-current="page">Facturas</li>
+                </ol>
+                </Container>
+            </nav>
           {isLoading ?
           (
            <div style={{marginTop: 250}} >
@@ -79,40 +79,53 @@ function Invoicing() {
                   </Row>
                   <Row>
                       {
-                          invoices.map(function (inv, index, arr) {
-                              const date = inv.createdAt
-                              const strSplitDate = String(date).split(' ');
-                              let newDate = new Date(strSplitDate[0]);
-                              let dd = newDate.getDate();
-                              let mm = newDate.getMonth() + 1; //January is 0!
-                              const yyyy = newDate.getFullYear();
-                              if (dd < 10) {
-                                  dd = '0' + dd;
-                              }
-                              if (mm < 10) {
-                                  mm = '0' + mm;
-                              }
-                              newDate = dd + "-" + mm + "-" + yyyy;
-                              newDate.toString();
-                              if (0 === index) {
-                                  return (
-                                    <Container className="lastInvoice">
-                                        <Row>
-                                            <Col sm={12} md={1} lg={8}>
-                                                <p
-                                                  className="invoiceInfo">#{inv.invoiceNumber} | {newDate} | {inv.description}...</p>
-                                            </Col>
-                                            <Col sm={12} md={6} lg={4}
-                                                 style={{display: "flex", justifyContent: "flex-end"}}>
-                                                <Button type="primary" bsPrefix="view btnTextColor"
-                                                        onClick={() => downloadInvoice(inv.id, inv.userId, inv.invoiceNumber)}>Ver
-                                                    factura</Button>
-                                            </Col>
-                                        </Row>
-                                    </Container>
-                                  )
-                              }
-                          })
+                        invoices.length == 0?
+                        (
+                            <Container className="lastInvoice">
+                                <Row>
+                                    <Col sm={12} md={1} lg={8}>
+                                        <p
+                                        className="invoiceInfo">No posee ninguna factura</p>
+                                    </Col>
+                                </Row>
+                            </Container>
+                        ):
+                        (
+                            invoices.map(function (inv, index, arr) {
+                                const date = inv.createdAt
+                                const strSplitDate = String(date).split(' ');
+                                let newDate = new Date(strSplitDate[0]);
+                                let dd = newDate.getDate();
+                                let mm = newDate.getMonth() + 1; //January is 0!
+                                const yyyy = newDate.getFullYear();
+                                if (dd < 10) {
+                                    dd = '0' + dd;
+                                }
+                                if (mm < 10) {
+                                    mm = '0' + mm;
+                                }
+                                newDate = dd + "-" + mm + "-" + yyyy;
+                                newDate.toString();
+                                if (0 === index) {
+                                    return (
+                                        <Container className="lastInvoice">
+                                            <Row>
+                                                <Col sm={12} md={1} lg={8}>
+                                                    <p
+                                                    className="invoiceInfo">#{inv.invoiceNumber} | {newDate} | {inv.description}...</p>
+                                                </Col>
+                                                <Col sm={12} md={6} lg={4}
+                                                    style={{display: "flex", justifyContent: "flex-end"}}>
+                                                    <Button type="primary" bsPrefix="view btnTextColor"
+                                                            onClick={() => downloadInvoice(inv.id, inv.userId, inv.invoiceNumber)}>Ver
+                                                        factura</Button>
+                                                </Col>
+                                            </Row>
+                                        </Container>
+                                    )
+                                }
+                            })
+                        )
                       }
                   </Row>
                   <Row>
@@ -133,6 +146,17 @@ function Invoicing() {
                   </Col>
                   <Row>
                       {
+                        invoices.length == 0?
+                        (
+                            <Container className="invoice">
+                                <Row>
+                                    <Col sm={12} md={6} lg={8}>
+                                        <p className="invoiceInfo">No posee ninguna factura para visualizar hasta el momento.</p>
+                                    </Col>
+                                </Row>
+                            </Container>
+                        ):
+                        (
                           invoices.filter((inv, index) => {
                               if (index > 0) {
                                   if (searchTerm === "") {
@@ -170,7 +194,6 @@ function Invoicing() {
                                   } else return false
                               } else return false
                           }).map((inv, index) => {
-                              console.log(inv)
                               const date = inv.createdAt
                               const strSplitDate = String(date).split(' ');
                               let newdate = new Date(strSplitDate[0]);
@@ -202,6 +225,7 @@ function Invoicing() {
                                 </Container>
                               )
                           })
+                        )
                       }
                   </Row>
                   <Row>

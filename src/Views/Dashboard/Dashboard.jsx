@@ -158,7 +158,15 @@ function Dashboard() {
                               </Row>
                               <Col xl={{span: 10, offset: 1}} style={{height: '100%'}}>
                                     {
-                                        userData.packages.map( function(pack) {
+                                        userData.packages.length == 0 ?
+                                        (
+                                            <Row className="noSubscriptions">
+                                                <Col xs={9} lg={10}>
+                                                    <p className="subtext" style={{paddingTop:15}}>No posee suscripciones</p>
+                                                </Col>
+                                            </Row>
+                                        ):
+                                        (userData.packages.map( function(pack) {
                                             if (pack.subscribed == true) {
                                                 const imageCondition = (pack.uriImg == '' || pack.uriImg == 'null' || pack.uriImg == null || pack.uriImg == 'link' || pack.uriImg == 'url')
                                                 cantSuscriptions++;
@@ -186,7 +194,7 @@ function Dashboard() {
                                                 }
 
                                             }
-                                        })
+                                        }))
                                     }
 
                                   <Row>
