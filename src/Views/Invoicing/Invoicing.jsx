@@ -81,7 +81,7 @@ function Invoicing() {
                                 <Row>
                                     <Col sm={12} md={1} lg={8}>
                                         <p
-                                        className="invoiceInfo"><b>No</b> posee <b>ninguna</b> factura</p>
+                                        className="invoiceInfo">No posee ninguna factura</p>
                                     </Col>
                                 </Row>
                             </Container>
