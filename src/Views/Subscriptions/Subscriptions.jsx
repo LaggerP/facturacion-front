@@ -7,6 +7,7 @@ import {apiUrl} from "../../Helper";
 import SuccessModal from "./Modals/SuccessModal";
 import {useCookies} from "react-cookie";
 import ModalHeader from "react-bootstrap/esm/ModalHeader";
+import Home from "../../Assets/home.png";
 
 function Subscriptions() {
     const [subscriptions, setSubscriptions] = React.useState(null);
@@ -49,14 +50,17 @@ function Subscriptions() {
 
     return (
       <div className="subscriptions">
-            <nav aria-label="breadcrumb">
-                <Container className="pt-4">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
-                        <li class="breadcrumb-item active" style={{color: "#C78C36"}} aria-current="page">Suscripciones</li>
-                    </ol>
-                </Container>
-            </nav>
+          <nav aria-label="breadcrumb">
+          <Container className="pt-4">
+          <ol class="breadcrumb">
+                <li class="breadcrumb-item"> <a href="javascript:history.back()">
+                       <img
+                        alt=""
+                        src={Home}/></a></li>
+                <li class="breadcrumb-item active" style={{color: "#C78C36"}}   aria-current="page">Suscripciones</li>
+            </ol> 
+            </Container>    
+        </nav>
           {isLoading ?
             (
               <div style={{marginTop: 250}} >
