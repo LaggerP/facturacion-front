@@ -8,6 +8,7 @@ import SuccessModal from "./Modal/SuccessModal";
 import FailureModal from "./Modal/FailureModal";
 import {useCookies} from "react-cookie";
 import {apiUrl, subsKey} from "../../Helper";
+import Home from "../../Assets/home.png";
 
 function Packages() {
 
@@ -108,7 +109,10 @@ function Packages() {
                     <nav aria-label="breadcrumb">
                  <Container className="pt-4">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
+                    <li class="breadcrumb-item"> <a href="/">
+                       <img
+                        alt=""
+                        src={Home}/></a></li>
                         <li class="breadcrumb-item"><a href="javascript:history.back()">Suscripciones</a></li>
                         <li class="breadcrumb-item active" style={{color: "#C78C36"}} aria-current="page">Paquetes</li>
                     </ol>

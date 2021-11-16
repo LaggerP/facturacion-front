@@ -5,6 +5,7 @@ import {useEffect, useCallback} from "react";
 import {apiUrl} from "../../Helper";
 import { useCookies } from 'react-cookie';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Home from "../../Assets/home.png";
 
 function Invoicing() {
     const [invoices, setInvoices] = React.useState(null);
@@ -53,10 +54,13 @@ function Invoicing() {
       <div className="invoicing">
             <nav aria-label="breadcrumb">
             <Container className="pt-4">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
-                    <li class="breadcrumb-item active" style={{color: "#C78C36"}}   aria-current="page">Facturas</li>
-                </ol>
+               <ol class="breadcrumb">
+                <li class="breadcrumb-item"> <a href="javascript:history.back()">
+                       <img
+                        alt=""
+                        src={Home}/></a></li>
+                <li class="breadcrumb-item active" style={{color: "#C78C36"}}   aria-current="page">Facturas</li>
+            </ol>
             </Container>
         </nav>
           {isLoading ?
