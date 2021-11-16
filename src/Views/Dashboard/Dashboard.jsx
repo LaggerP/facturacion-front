@@ -1,16 +1,12 @@
 import React, {useContext, useEffect, useState} from "react";
-
 import './Dashboard.scss';
-
 import {Container, Col, Row, Button, Spinner, OverlayTrigger, Tooltip} from "react-bootstrap";
-
 import {Link} from 'react-router-dom';
-
-import {Download, Pencil} from "react-bootstrap-icons"
+import {Download} from "react-bootstrap-icons"
 import Cards from 'react-credit-cards';
-
+import {useCookies} from 'react-cookie';
 import {UserContext} from "../../context/UserContext";
-import {token, client, apiUrl} from "../../Helper";
+import {token, apiUrl} from "../../Helper";
 
 import Home from "../../Assets/home.png";
 
@@ -18,10 +14,11 @@ function Dashboard() {
     let cantSuscriptions = 0;
     const [isLoading, setIsLoading] = useState(false);
     const {userData, userLogged, setUserData, setUserLogged} = useContext(UserContext);
+    const [cookies, setCookie] = useCookies(['cookie-name']);
 
     const userValidate = async () => {  // function to validate if user is really logged
 
-        let request = await fetch(`${apiUrl}/users/${client}/${token}`, {
+        let request = await fetch(`${apiUrl}/users/web/${token}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -35,29 +32,29 @@ function Dashboard() {
         } else {
             setUserData(response); //set the information of the user.
             setUserLogged(true);
+            setCookie('user', response, { path: '/' });
+            setCookie('externalClientToken', token, { path: '/' });
         }
     }
 
     const downloadLastInvoice = async () => {
-        if(userData.lastInvoice !== null){
-            setIsLoading(true);
-            let invoice = await fetch(`${apiUrl}/invoices/pdf/${userData.lastInvoice.userId}/${userData.lastInvoice.id}`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + userData.token
-                }
-            });
-            invoice = await invoice.json();
-            const linkSource = `data:application/pdf;base64,${invoice}`;
-            const downloadLink = document.createElement("a");
-            const fileName = `Factura - #${userData.lastInvoice.invoiceNumber}.pdf`;
-            downloadLink.href = linkSource;
-            downloadLink.download = fileName;
-            downloadLink.click();
-            setIsLoading(false);
-        }
+        setIsLoading(true);
+        let invoice = await fetch(`${apiUrl}/invoices/pdf/${userData.lastInvoice.userId}/${userData.lastInvoice.id}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + cookies.token
+            }
+        });
+        invoice = await invoice.json();
+        const linkSource = `data:application/pdf;base64,${invoice}`;
+        const downloadLink = document.createElement("a");
+        const fileName = `Factura - #${userData.lastInvoice.invoiceNumber}.pdf`;
+        downloadLink.href = linkSource;
+        downloadLink.download = fileName;
+        downloadLink.click();
+        setIsLoading(false);
     }
 
     useEffect(async () => {
@@ -145,9 +142,9 @@ function Dashboard() {
                                         <Col className="card">
                                                     <Cards
                                                         cvc="123"
-                                                        expiry="14/2021"
+                                                        expiry="08/2024"
                                                         name={userData.userData.firstName +" "+ userData.userData.lastName}
-                                                        number="5200*** *** **1234"
+                                                        number="5200*** *** **7294"
                                                     />
                                                 </Col>
                                   </Col>
