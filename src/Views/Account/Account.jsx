@@ -6,6 +6,7 @@ import {Container, Col, Row} from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
+import Home from "../../Assets/home.png";
 
 function Account() {
 
@@ -15,6 +16,17 @@ function Account() {
     if( userData ) {
         return (
             <div className="account">
+                <nav aria-label="breadcrumb">
+                <Container className="pt-4">
+                    <ol class="breadcrumb">
+                   <li class="breadcrumb-item"> <a href="javascript:history.back()">
+                       <img
+                        alt=""
+                        src={Home}/></a></li>
+                      <li class="breadcrumb-item active" style={{color: "#C78C36"}}   aria-current="page">Cuenta</li>
+                    </ol>
+                    </Container>
+                </nav>
                 <Container>
                     <Row>
                         <Col sm={12} md={8} xl={6}>

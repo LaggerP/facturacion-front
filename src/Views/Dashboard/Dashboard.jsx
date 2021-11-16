@@ -12,6 +12,8 @@ import Cards from 'react-credit-cards';
 import {UserContext} from "../../context/UserContext";
 import {token, client, apiUrl} from "../../Helper";
 
+import Home from "../../Assets/home.png";
+
 function Dashboard() {
     let cantSuscriptions = 0;
     const [isLoading, setIsLoading] = useState(false);
@@ -68,7 +70,10 @@ function Dashboard() {
                 <nav aria-label="breadcrumb">
                 <Container className="pt-4">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item" style={{color: "#C78C36"}} ><a href="#">Home</a></li>
+                   <li class="breadcrumb-item"> <a href="#">
+                       <img
+                        alt=""
+                        src={Home}/></a></li>
                     </ol>
                     </Container>
                 </nav>
