@@ -1,27 +1,35 @@
-import React, {useContext} from "react";
-
 import './Account.scss';
-
 import {Container, Col, Row} from "react-bootstrap";
-import { UserContext } from "../../context/UserContext";
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
+import Home from "../../Assets/home.png";
+import {useCookies} from "react-cookie";
 
 function Account() {
 
-    const { userData } = useContext(UserContext);
+    const [cookies] = useCookies(['cookie-name']);
 
-
-    if( userData ) {
+    if ( cookies.user ) {
         return (
             <div className="account">
+                <nav aria-label="breadcrumb">
+                <Container className="pt-4">
+                    <ol class="breadcrumb">
+                   <li class="breadcrumb-item"> <a href="javascript:history.back()">
+                       <img
+                        alt=""
+                        src={Home}/></a></li>
+                      <li class="breadcrumb-item active" style={{color: "#C78C36"}}   aria-current="page">Cuenta</li>
+                    </ol>
+                    </Container>
+                </nav>
                 <Container>
                     <Row>
                         <Col sm={12} md={8} xl={6}>
                             <p className="accountTitle" >Cuenta</p>
                         </Col>
                         <Col sm={12} md={4} xl={6}>
-                            <p className="membershipTitle" >MIEMBRO DESDE <b>{userData.userData.createdAt.substring(0,10)}</b></p>
+                            <p className="membershipTitle" >MIEMBRO DESDE <b>{cookies.user.userData.createdAt.substring(0,10)}</b></p>
                         </Col>
                     </Row>
 
@@ -33,7 +41,7 @@ function Account() {
                         <Container >
                             <Row className="informationContainer">
                                 <Col sm={12} md={6} lg={6}>
-                                    <p className="text" ><b>Email: </b>{userData.userData.email} </p>
+                                    <p className="text" ><b>Email: </b>{cookies.user.userData.email} </p>
                                 </Col>
                             </Row>
                         </Container>
@@ -43,7 +51,7 @@ function Account() {
                         <Container className="informationContainer">
                             <Row>
                                 <Col sm={12} md={6} lg={6}>
-                                    <p className="text" ><b>Telefono: </b> {userData.userData.phoneNumber}</p>
+                                    <p className="text" ><b>Telefono: </b> {cookies.user.userData.phoneNumber}</p>
                                 </Col>
                             </Row>
                         </Container>
@@ -58,9 +66,9 @@ function Account() {
                                 <Col sm={8} md={4} lg={4} className="card">
                                     <Cards
                                         cvc="123"
-                                        expiry="14/2021"
-                                        name={userData.userData.firstName +" "+ userData.userData.lastName}
-                                        number="5200*** *** **1234"
+                                        expiry="08/2024"
+                                        name={cookies.user.userData.firstName +" "+ cookies.user.userData.lastName}
+                                        number="5200*** *** **7294"
                                     />
                                 </Col>
                             </Row>

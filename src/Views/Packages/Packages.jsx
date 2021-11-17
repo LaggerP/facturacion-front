@@ -1,23 +1,16 @@
-import React, {useState, useContext, useEffect} from "react";
-
+import React, {useState, useEffect} from "react";
 import './Packages.scss';
-
 import {Container, Col, Row, Button, Card, Modal, Spinner} from "react-bootstrap";
-
 import {HandThumbsUp} from 'react-bootstrap-icons';
-
 import Slider from "react-slick";
-
 import InfoModal from "./Modal/InfoModal";
 import SuccessModal from "./Modal/SuccessModal";
 import FailureModal from "./Modal/FailureModal";
-
-import {UserContext} from "../../context/UserContext";
+import {useCookies} from "react-cookie";
 import {apiUrl, subsKey} from "../../Helper";
+import Home from "../../Assets/home.png";
 
 function Packages() {
-
-    const {userData} = useContext(UserContext);
 
     const [modalInfoShow, setModalInfoShow] = useState(false);
     const [ModalConfirmShow, setModalConfirmShow] = useState(false);
@@ -27,6 +20,7 @@ function Packages() {
     const [dataConfirm, setDataConfirm] = useState();
     const [paquetes, setPaquetes] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [cookies] = useCookies(['cookie-name']);
 
     const packagesHired = [];
 
@@ -50,20 +44,17 @@ function Packages() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + userData.token
+                'Authorization': 'Bearer ' + cookies.user.token
             },
             body: JSON.stringify({
-                userId: userData.userData.id,
-                userObjectId: userData.userData.objId,
-                email: userData.userData.email,
+                userId: cookies.user.userData.id,
                 name: packageName,
-                subscriptionId: userData.packages[0].subscriptionId,
+                subscriptionId: cookies.user.userData.subscriptionId,
                 packageId: packageIdNumber,
                 cost: packageCost,
-                firstName: userData.userData.firstName,
-                lastName: userData.userData.lastName,
-                telephone: userData.userData.phoneNumber,
+                email: cookies.user.userData.email,
                 uriImg: packageImage || 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png',
+
             })
         });
         if (request.status === 201) {
@@ -118,11 +109,14 @@ function Packages() {
                     <nav aria-label="breadcrumb">
                  <Container className="pt-4">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
+                    <li class="breadcrumb-item"> <a href="/">
+                       <img
+                        alt=""
+                        src={Home}/></a></li>
                         <li class="breadcrumb-item"><a href="javascript:history.back()">Suscripciones</a></li>
                         <li class="breadcrumb-item active" style={{color: "#C78C36"}} aria-current="page">Paquetes</li>
                     </ol>
-                 </Container> 
+                 </Container>
         </nav>
               {isLoading ?
                 (
@@ -143,7 +137,6 @@ function Packages() {
                                   paquetes.map((sub, key) => {
                                       if (sub.estado.toLowerCase() === "activo") {
                                         const imageCondition = (sub.imagen == '' || sub.imagen == 'null' || sub.imagen == null || sub.imagen == 'link' || sub.imagen == 'url')
-                                        console.log(sub)
                                           return (
                                             <Col key={key} style={{paddingTop: 30}}>
                                                 <Card bsPrefix="packageCard">
@@ -153,7 +146,7 @@ function Packages() {
                                                         <Card.Title className="cardTitle">{sub.nombre}</Card.Title>
                                                         <Card.Text className="cardText">${sub.precio} /mes</Card.Text>
                                                         {
-                                                            userData.packages.map(function (pack) {
+                                                            cookies.user.packages.map(function (pack) {
                                                                 if (pack.packageId === sub.id_paquete) {
                                                                     if (pack.subscribed === true) {
                                                                         packagesHired.push(sub.id_paquete)
@@ -256,18 +249,32 @@ function Packages() {
         )
     } else {
         return (
-          <div>
+            <div className="packages">
               {isLoading ? (
-                  <Spinner animation="border" role="status">
-                      <span className="visually-hidden">Loading...</span>
-                  </Spinner>
+                <div style={{marginTop: 250}} >
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </div>
                 )
                 :
                 (
-                  <h1>Sin Paquetes</h1>
+                <div>
+                    <nav aria-label="breadcrumb">
+                        <Container className="pt-4">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="javascript:history.back()">Home</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:history.back()">Suscripciones</a></li>
+                                <li class="breadcrumb-item active" style={{color: "#C78C36"}} aria-current="page">Paquetes</li>
+                            </ol>
+                        </Container>
+                    </nav>
+                    <h1 style={{marginTop: 250}}>No se encontraron paquetes.</h1>
+                    <h1>Intente nuevamente o contactenos.</h1>
+                </div>
                 )
               }
-          </div>
+            </div>
         )
     }
 
