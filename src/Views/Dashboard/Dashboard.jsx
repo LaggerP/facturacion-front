@@ -140,7 +140,6 @@ function Dashboard() {
                                     <Row>
                                         <p className="text" style={{marginLeft: 16}}>Método de pago</p>
                                     </Row>
-                                        <Col lg={{span: 10, offset: 1}}>
                                         <Col className="card">
                                                     <Cards
                                                         cvc="123"
@@ -149,7 +148,6 @@ function Dashboard() {
                                                         number="5200*** *** **7294"
                                                     />
                                                 </Col>
-                                  </Col>
                               </Container>
                           </Row>
                       </Col>
