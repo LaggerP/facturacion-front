@@ -45,7 +45,7 @@ function Dashboard() {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + cookies.user.token
+                    'Authorization': 'Bearer ' + userData.token
                 }
             });
             invoice = await invoice.json();
