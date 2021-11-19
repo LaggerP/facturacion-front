@@ -20,9 +20,7 @@ function Packages() {
     const [dataConfirm, setDataConfirm] = useState();
     const [paquetes, setPaquetes] = useState();
     const [isLoading, setIsLoading] = useState(true);
-    const [cookies] = useCookies(['cookie-name']);
-
-    const packagesHired = [];
+    const [cookies, setCookie] = useCookies(['cookie-name']);
 
     const getPaquetes = async () => {
         let request = await fetch('https://suscripciones-backend.herokuapp.com/api/packages/v1/list', {
@@ -58,13 +56,32 @@ function Packages() {
             })
         });
         if (request.status === 201) {
-            setModalSuccess(true)
+            setModalSuccess(true);
+            userValidate();
+            // cookies.user.packages.push(await request.json().sub);
         } else {
             setModalFailure(true)
         }
     }
 
+    const userValidate = async () => { 
+        let request = await fetch(`${apiUrl}/users/web/${cookies.externalClientToken}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        let response = await request.json();
+        if (request.status !== 200) {
+            console.log("Error")
+        } else {
+            setCookie('user', response, { path: '/' });
+        }
+    }
+
     useEffect(async () => {
+        await userValidate();
         await getPaquetes();
     }, []);
 
@@ -144,31 +161,23 @@ function Packages() {
                                                               src={imageCondition ? 'https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png' : sub.imagen}/>
                                                     <Card.Body>
                                                         <Card.Title className="cardTitle">{sub.nombre}</Card.Title>
-                                                        <Card.Text className="cardText">${sub.precio} /mes</Card.Text>
-                                                        {
-                                                            cookies.user.packages.map(function (pack) {
-                                                                if (pack.packageId === sub.id_paquete) {
-                                                                    if (pack.subscribed === true) {
-                                                                        packagesHired.push(sub.id_paquete)
-                                                                    }
-                                                                }
-                                                            })
-                                                        }
-                                                        {
-                                                            packagesHired.some(item => item === sub.id_paquete) ?
-                                                              <Button type="primary" bsPrefix="buttonPackagesHired"
-                                                                      disabled>Contratado</Button>
-                                                              :
-                                                              <Button type="primary" bsPrefix="buttonPackages"
-                                                                      onClick={() => {
-                                                                          setModalConfirmShow(true);
-                                                                          setDataConfirm({
-                                                                              packageName: sub.nombre,
-                                                                              packageIdNumber: sub.id_paquete,
-                                                                              packageCost: sub.precio,
-                                                                              packageImage: sub.imagen
-                                                                          })
-                                                                      }}>Contratar</Button>
+                                                        <Card.Text className="cardText">${sub.precio} /mes</Card.Text> 
+                                                        {cookies.user.packages.some(item => item.packageId === sub.id_paquete && item.subscribed===true) 
+                                                        ? 
+                                                            <Button type="primary" bsPrefix="buttonPackagesHired" disabled>Contratado</Button> 
+                                                        : 
+                                                            <Button type="primary" bsPrefix="buttonPackages"
+                                                                    onClick={() => {
+                                                                        setModalConfirmShow(true);
+                                                                    
+                                                                        setDataConfirm({
+                                                                            packageName: sub.nombre,
+                                                                            packageIdNumber: sub.id_paquete,
+                                                                            packageCost: sub.precio,
+                                                                            packageImage: sub.imagen
+                                                                        })
+                                                                    }}
+                                                                    >Contratar</Button>
                                                         }
                                                     </Card.Body>
                                                     <Card.Footer bsPrefix="cardFooter" onClick={() => {
@@ -181,7 +190,6 @@ function Packages() {
                                                     }}>Ver más</Card.Footer>
                                                 </Card>
                                             </Col>
-
                                           )
                                       }
                                   })
@@ -236,8 +244,8 @@ function Packages() {
               <SuccessModal
                 show={modalSuccess}
                 onHide={() => {
-                    setModalSuccess(false)
-                    getPaquetes()
+                    setModalSuccess(false)  
+                    window.location.reload();
                 }}
               />
 

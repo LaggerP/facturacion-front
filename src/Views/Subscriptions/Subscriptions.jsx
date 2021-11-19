@@ -6,7 +6,6 @@ import {useEffect, useCallback} from "react";
 import {apiUrl} from "../../Helper";
 import SuccessModal from "./Modals/SuccessModal";
 import {useCookies} from "react-cookie";
-import ModalHeader from "react-bootstrap/esm/ModalHeader";
 import Home from "../../Assets/home.png";
 
 function Subscriptions() {
@@ -15,8 +14,10 @@ function Subscriptions() {
     const [modalCancelSubscriptions, setModalCancelSubscriptions] = useState(false);
     const [modalSuccess, setModalSuccess] = useState(false);
     const [subs, setSubs] = useState(false);
-    const [cookies] = useCookies(['cookie-name']);
+    const [cookies, setCookie] = useCookies(['cookie-name']);
+    const [result, setResult] = useState(null);
     const today = new Date();
+
 
     const fetchMyAPI = useCallback(async () => { // function to get the subscription of the user
         let response = await fetch(`${apiUrl}/subscriptions/${cookies.user.userData.id}`, {
@@ -30,6 +31,12 @@ function Subscriptions() {
         response = await response.json()
         setSubscriptions(response.reverse())
         setIsLoading(false);
+
+        let answer = response.every((i) => {
+            return i.subscribed === false
+        })
+        setResult(answer)
+
     }, [])
 
     const cambiarEstadoSuscripcion = useCallback(async (userId, subscriptionId, packageId) => {
@@ -41,11 +48,30 @@ function Subscriptions() {
                 'Authorization': 'Bearer ' + cookies.user.token
             }
         });
+        fetchMyAPI();
+        userValidate();
         await response.json();
     }, [])
 
+    const userValidate = async () => { 
+        let request = await fetch(`${apiUrl}/users/web/${cookies.externalClientToken}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        let response = await request.json();
+        if (request.status !== 200) {
+            console.log("Error")
+        } else {
+            setCookie('user', response, { path: '/' });
+        }
+    }
+
     useEffect(() => {
-        fetchMyAPI()
+        userValidate();
+        fetchMyAPI();
     }, [fetchMyAPI]);
 
     return (
@@ -87,7 +113,7 @@ function Subscriptions() {
                   </Row>
                   <Row>
                       {
-                        subscriptions.length == 0 || subscriptions == null ?
+                        subscriptions.length == 0 || subscriptions == null || result == true ?
                         (
                             <Container className="package">
                                 <Row>
