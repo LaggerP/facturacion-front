@@ -110,7 +110,6 @@ function Subscriptions() {
                   </Row>
                   <Row>
                       <p className="contractedPackages">Paquetes Contratados</p>
-                      {console.log(subscriptions)}
                   </Row>
                   <Row>
                       {
